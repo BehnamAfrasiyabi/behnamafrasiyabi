@@ -7,6 +7,9 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// Three.js variables
+let scene, camera, renderer, model;
+
 // DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   // Mobile Menu Toggle
@@ -43,45 +46,149 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Modal Setup
-  const modal = document.getElementById('imageModal');
+  // Image Modal (for project images and certificates)
+  const imageModal = document.getElementById('imageModal');
   const modalImg = document.getElementById('modalImage');
-  const closeBtn = document.querySelector('.close');
+  const imageCloseBtn = imageModal.querySelector('.close');
 
-  // Handle clicks on project images
-  document.querySelectorAll('.project-image-trigger').forEach(img => {
+  document.querySelectorAll('.project-image-trigger, .cert-image img').forEach(img => {
     img.addEventListener('click', () => {
-      modal.style.display = 'block';
       modalImg.src = img.src;
       modalImg.alt = img.alt;
+      imageModal.style.display = 'block';
     });
   });
 
-  // Handle clicks on certification images
-  document.querySelectorAll('.cert-image img').forEach(img => {
-    img.addEventListener('click', () => {
-      modal.style.display = 'block';
-      modalImg.src = img.src;
-      modalImg.alt = img.alt;
-    });
-  });
-
-  // Close modal
-  if (closeBtn) {
-    closeBtn.onclick = () => {
-      modal.style.display = 'none';
+  if (imageCloseBtn) {
+    imageCloseBtn.onclick = () => {
+      imageModal.style.display = 'none';
     };
   }
 
   window.onclick = (event) => {
-    if (event.target === modal) {
-      modal.style.display = 'none';
+    if (event.target === imageModal) {
+      imageModal.style.display = 'none';
+    }
+  };
+
+  // 3D Viewer Modal
+  const modal3d = document.getElementById('3dModal');
+  const close3dBtn = modal3d.querySelector('.close');
+
+  // View 3D buttons
+  document.querySelectorAll('.view-3d-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modelPath = btn.getAttribute('data-model');
+      init3DViewer(modelPath);
+      modal3d.style.display = 'block';
+    });
+  });
+
+  if (close3dBtn) {
+    close3dBtn.onclick = () => {
+      modal3d.style.display = 'none';
+      dispose3DViewer();
+    };
+  }
+
+  window.onclick = (event) => {
+    if (event.target === modal3d) {
+      modal3d.style.display = 'none';
+      dispose3DViewer();
     }
   };
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-      modal.style.display = 'none';
+    if (e.key === 'Escape') {
+      imageModal.style.display = 'none';
+      modal3d.style.display = 'none';
+      dispose3DViewer();
     }
   });
 });
+
+// Initialize Three.js viewer
+function init3DViewer(modelPath) {
+  dispose3DViewer();
+
+  const container = document.getElementById('3dViewer');
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0a0a0a);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  directionalLight.position.set(10, 10, 10);
+  scene.add(directionalLight);
+
+  camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+  camera.position.set(0, 0, 5);
+
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  container.appendChild(renderer.domElement);
+
+  const loader = new THREE.GLTFLoader();
+  loader.load(
+    modelPath,
+    (gltf) => {
+      model = gltf.scene;
+      scene.add(model);
+
+      // Center model
+      const box = new THREE.Box3().setFromObject(model);
+      const center = box.getCenter(new THREE.Vector3());
+      model.position.x = -center.x;
+      model.position.y = -center.y;
+      model.position.z = -center.z;
+    },
+    undefined,
+    (error) => {
+      console.error('Error loading 3D model:', error);
+    }
+  );
+
+  // Handle window resize
+  window.addEventListener('resize', onWindowResize);
+
+  // Animation loop
+  animate();
+}
+
+function onWindowResize() {
+  if (!camera || !renderer) return;
+  const container = document.getElementById('3dViewer');
+  camera.aspect = container.clientWidth / container.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(container.clientWidth, container.clientHeight);
+}
+
+function animate() {
+  if (!renderer) return;
+  requestAnimationFrame(animate);
+  if (model) {
+    model.rotation.y += 0.01;
+  }
+  renderer.render(scene, camera);
+}
+
+function dispose3DViewer() {
+  if (renderer) {
+    renderer.dispose();
+    renderer = null;
+  }
+  if (scene) {
+    scene = null;
+  }
+  if (camera) {
+    camera = null;
+  }
+  if (model) {
+    model = null;
+  }
+  const container = document.getElementById('3dViewer');
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+  window.removeEventListener('resize', onWindowResize);
+}
