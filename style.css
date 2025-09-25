@@ -515,3 +515,38 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== TOOLS SECTION ===== */
+.tools {
+  padding: 5rem 0;
+  background-color: var(--secondary-bg);
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.2rem;
+  justify-items: center;
+}
+
+.tool-item {
+  background: var(--card-bg);
+  padding: 1.2rem 1rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  width: 100%;
+  max-width: 240px;
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.tool-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
