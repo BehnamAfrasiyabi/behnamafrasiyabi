@@ -552,27 +552,16 @@ footer {
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
 }
 
-.tool-icon {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(16, 185, 129, 0.1);
-  border-radius: 12px;
-  color: var(--accent);
-  font-size: 1.4rem;
-}
-
 .tool-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.8rem;
+  font-size: 1.35rem;
+  margin-bottom: 0.9rem;
   color: var(--text);
+  font-weight: 700;
 }
 
 .tool-card p {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   color: var(--text-secondary);
   margin-bottom: 0;
+  line-height: 1.6;
 }
