@@ -1,4 +1,4 @@
-// Add scroll class to body for navbar effect
+// Navbar scroll effect
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
     document.body.classList.add('scrolled');
@@ -19,11 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Smooth scrolling for anchor links
+  // Smooth scrolling
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
-      
       const targetId = this.getAttribute('href');
       if (targetId === '#') return;
       
@@ -35,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
           behavior: 'smooth'
         });
         
-        // Close mobile menu
         if (navLinks.classList.contains('active')) {
           navLinks.classList.remove('active');
           hamburger.classList.remove('active');
@@ -43,4 +41,30 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Certificate Image Modal
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const closeBtn = document.querySelector('.close');
+  const certImages = document.querySelectorAll('.cert-image img');
+
+  certImages.forEach(img => {
+    img.addEventListener('click', () => {
+      modal.style.display = 'block';
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+    });
+  });
+
+  if (closeBtn) {
+    closeBtn.onclick = () => {
+      modal.style.display = 'none';
+    };
+  }
+
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  };
 });
