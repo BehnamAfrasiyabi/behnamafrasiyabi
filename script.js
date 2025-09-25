@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
           behavior: 'smooth'
         });
         
-        // Close mobile menu
         if (navLinks.classList.contains('active')) {
           navLinks.classList.remove('active');
           hamburger.classList.remove('active');
@@ -44,13 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Certificate Modal
+  // Modal Setup
   const modal = document.getElementById('imageModal');
   const modalImg = document.getElementById('modalImage');
   const closeBtn = document.querySelector('.close');
-  const certImages = document.querySelectorAll('.cert-image img');
 
-  certImages.forEach(img => {
+  // Handle clicks on project images
+  document.querySelectorAll('.project-image-trigger').forEach(img => {
     img.addEventListener('click', () => {
       modal.style.display = 'block';
       modalImg.src = img.src;
@@ -58,6 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Handle clicks on certification images
+  document.querySelectorAll('.cert-image img').forEach(img => {
+    img.addEventListener('click', () => {
+      modal.style.display = 'block';
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+    });
+  });
+
+  // Close modal
   if (closeBtn) {
     closeBtn.onclick = () => {
       modal.style.display = 'none';
@@ -70,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Close modal with Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.style.display === 'block') {
       modal.style.display = 'none';
