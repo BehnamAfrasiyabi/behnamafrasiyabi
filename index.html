@@ -1,87 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Resume</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Behnam Afrasiyabi - Electronic Design Engineer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Your Name</h1>
-            <p>Embedded Systems Hardware Designer</p>
-            <div class="contact-info">
-                <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
-                <p>Phone: +98 123 456 7890</p>
-            </div>
-        </div>
-    </header>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">Behnam Afrasiyabi</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#software">Software</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
 
-    <section class="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>I always been interested in the design and development of embedded systems for various applications. During my university education, I built a system for managing home appliances using a cell phone with a smart home approach. After that, I designed a device for testing and simulation of in-vehicle sensors, and I have been involved in a project to build a car tester and ECU troubleshooter. After graduation, I started my career working in the field of manufacturing, production, and soldering of industrial boards. Currently, I am a member of the MAPNA Automation and Process Control System (MAPCS). MAPCS is the state-of-the-art FCS/DCS system of MAPNA Electric & Control (MECO) Company. Design and development of hardware for industrial devices and components such as Remote Terminal Units (RTUs) and various industrial I/O cards are some examples of projects I work on.</p>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-image">
+          <img src="https://placehold.co/600x800/111111/FFFFFF?text=Behnam+Afrasiyabi" alt="Behnam Afrasiyabi" />
         </div>
-    </section>
-
-    <section class="skills">
-        <div class="container">
-            <h2>Skills</h2>
-            <ul>
-                <li>Analog and Digital Circuit Design</li>
-                <li>Microcontrollers (Arduino, PIC, STM32)</li>
-                <li>PCB Design Software (e.g., Altium Designer)</li>
-                <li>C and Python Programming</li>
-                <li>Simulation Tools (e.g., LTspice)</li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="experience">
-        <div class="container">
-            <h2>Work Experience</h2>
-            <div class="job">
-                <h3>Company A</h3>
-                <p><strong>Position:</strong> Hardware Designer</p>
-                <p><strong>Period:</strong> 2018 - 2022</p>
-                <ul>
-                    <li>Designed and developed analog and digital circuits for various products</li>
-                    <li>Collaborated with the software team for hardware-software integration</li>
-                </ul>
+        <div class="hero-text">
+          <h1>Hello, I'm <span class="highlight">Behnam Afrasiyabi</span>,<br />Electronic Design Engineer</h1>
+          <p>Specialized in hardware development for industrial automation systems, embedded systems, and automotive electronics.</p>
+          <div class="contact-info">
+            <div class="info-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>b.afrasiyabi@gmail.com</span>
             </div>
-            <div class="job">
-                <h3>Company B</h3>
-                <p><strong>Position:</strong> Electronics Engineer</p>
-                <p><strong>Period:</strong> 2016 - 2018</p>
-                <ul>
-                    <li>Designed and tested communication systems</li>
-                    <li>Simulated circuits and analyzed system performance</li>
-                </ul>
+            <div class="info-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>+989365066966</span>
             </div>
+            <div class="info-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              <a href="https://linkedin.com/in/behnam-afrasiyabi" target="_blank">linkedin.com/in/behnam-afrasiyabi</a>
+            </div>
+          </div>
+          <a href="#projects" class="btn">View My Projects</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section class="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="project">
-                <h3>Project 1: Smart Temperature Control System</h3>
-                <p>This project involved designing a temperature control system using an STM32 microcontroller and temperature sensors.</p>
-            </div>
-            <div class="project">
-                <h3>Project 2: Power Supply Circuit Design</h3>
-                <p>Designed a power supply circuit for medical devices using switching technology.</p>
-            </div>
-        </div>
-    </section>
+  <!-- Software & Tools Section -->
+  <section id="software" class="software">
+    <div class="container">
+      <h2><span class="highlight">Software</span> & Tools</h2>
+      <div class="software-list">
+        <div class="software-item">Altium Designer</div>
+        <div class="software-item">AutoCAD Electrical</div>
+        <div class="software-item">STM32CubeIDE</div>
+        <div class="software-item">Atmel Studio</div>
+        <div class="software-item">Embedded C Programming</div>
+        <div class="software-item">PCB Layout & Routing</div>
+        <div class="software-item">EMC/EMI Simulation Tools</div>
+        <div class="software-item">Excel (Inventory Management)</div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 All Rights Reserved</p>
+  <!-- Education & Certifications -->
+  <section class="education">
+    <div class="container">
+      <h2><span class="highlight">Education</span> & Certifications</h2>
+      <div class="edu-cert">
+        <div class="education-list">
+          <div class="edu-item">
+            <h3>Bachelor of Arts - BA, Electrical and Electronics Engineering</h3>
+            <p class="institution">Islamic Azad University, Karaj Branch</p>
+            <p class="period">2016–2018</p>
+            <a href="http://www.kiau.ac.ir" target="_blank">Visit Website</a>
+          </div>
+          <div class="edu-item">
+            <h3>Associate's degree, Electrical and Electronics Engineering</h3>
+            <p class="institution">Imam Sadegh University of Babol</p>
+            <p class="period">2011–2014</p>
+            <a href="https://p-babol.tvu.ac.ir" target="_blank">Visit Website</a>
+          </div>
+          <div class="edu-item">
+            <h3>Diploma, Electrical and Electronics Engineering</h3>
+            <p class="institution">Saipa Technical High School</p>
+            <p class="period">2008–2011</p>
+            <a href="http://www.saipaschool.blogveb.com" target="_blank">Visit Website</a>
+          </div>
         </div>
-    </footer>
+        <div class="certifications">
+          <div class="cert-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>High-Speed PCB Layout Design – Altium Designer Certificate</span>
+          </div>
+          <div class="cert-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>AutoCad Electrical 2014 Certificate</span>
+          </div>
+          <div class="cert-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>AVR Microcontroller Programming Certificate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2><span class="highlight">Featured</span> Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://placehold.co/600x400/222222/FFFFFF?text=Industrial+RTU+Design" alt="Industrial RTU Design" />
+          </div>
+          <div class="project-content">
+            <h3>Industrial RTU Design</h3>
+            <p>Designed and developed Remote Terminal Units (RTUs) for industrial automation systems with robust EMC/EMI protection and high-speed digital interfaces. Focused on signal integrity, crosstalk control, and power management for reliable operation in harsh environments.</p>
+            <div class="tags">
+              <span>PCB Design</span>
+              <span>Embedded Systems</span>
+              <span>Industrial Automation</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://placehold.co/600x400/222222/FFFFFF?text=IoT+Communication+Modules" alt="IoT Communication Modules" />
+          </div>
+          <div class="project-content">
+            <h3>IoT Communication Modules</h3>
+            <p>Developed communication solutions using Zigbee, LoRa, and GSM modules for industrial monitoring and remote data acquisition. Integrated wireless protocols into industrial-grade hardware with ESD and surge protection to ensure reliability in field deployments.</p>
+            <div class="tags">
+              <span>IoT</span>
+              <span>Wireless</span>
+              <span>Industrial IoT</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://placehold.co/600x400/222222/FFFFFF?text=Automotive+Sensor+Tester" alt="Automotive Sensor Tester" />
+          </div>
+          <div class="project-content">
+            <h3>Automotive Sensor Tester</h3>
+            <p>Designed a device for testing and simulation of in-vehicle sensors, contributing to automotive diagnostics and reverse engineering. The system supports multiple sensor types and provides real-time feedback for calibration and troubleshooting.</p>
+            <div class="tags">
+              <span>Automotive</span>
+              <span>Testing</span>
+              <span>Reverse Engineering</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://placehold.co/600x400/222222/FFFFFF?text=Smart+Home+System" alt="Smart Home System" />
+          </div>
+          <div class="project-content">
+            <h3>Smart Home Control System</h3>
+            <p>Designed a home appliance control system using mobile phone interface during university education. Implemented embedded firmware and wireless communication for real-time monitoring and control of household devices via smartphone.</p>
+            <div class="tags">
+              <span>Embedded Systems</span>
+              <span>Smart Home</span>
+              <span>Mobile Integration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Behnam Afrasiyabi. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
-
