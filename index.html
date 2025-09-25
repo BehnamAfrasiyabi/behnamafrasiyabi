@@ -98,10 +98,9 @@
     <div class="container">
       <h2><span class="highlight">Featured</span> Projects</h2>
       <div class="projects-grid">
-        
         <div class="project-card">
           <div class="project-image">
-            <img class="project-image-trigger" src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=TSim200V3" alt="T-Sim200V3" />
+            <img class="project-image-trigger" src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=T-Sim200V3" alt="T-Sim200V3" />
           </div>
           <div class="project-content">
             <h3>T-Sim200V3</h3>
@@ -114,7 +113,6 @@
             <button class="view-3d-btn" data-model="models/T-Sim200V3.glb">View 3D Model</button>
           </div>
         </div>
-        
         <div class="project-card">
           <div class="project-image">
             <img class="project-image-trigger" src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=IoT+Modules" alt="IoT Modules" />
@@ -212,234 +210,7 @@
     </div>
   </div>
 
-  <!-- Image Modal (for certificates and project images) -->
-  <div id="imageModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <img id="modalImage" src="" alt="Preview">
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Behnam Afrasiyabi. All rights reserved.</p>
-    </div>
-  </footer>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Behnam Afrasiyabi - Electronic Design Engineer</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
-  <script src="script.js" defer></script>
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="container">
-      <div class="logo">Behnam Afrasiyabi</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#tools">Tools</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-      </ul>
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-image">
-          <img src="profile.png" alt="Behnam Afrasiyabi" />
-        </div>
-        <div class="hero-text">
-          <h1>Hello, I'm <span class="highlight">Behnam Afrasiyabi</span></h1>
-          <p>
-            I have always been interested in the design and development of embedded systems for various applications. During my university education, I built a system for managing home appliances using a cell phone with a smart home approach. After that, I designed a device for test and simulation of In-vehicle sensors, and I have been involved in a project to build a car tester and ECU troubleshooter.
-          </p>
-          <p>
-            After graduation, I started my career working in the field of manufacturing, production, and soldering of industrial boards. Currently, I am a member of the MAPNA Automation and Process Control System or MAPCS. MAPCS is the state of the art FCS/DCS system of MAPNA Electric & Control (MECO) Company. Design and development of Hardware for industrial devices and components such as Remote Terminal Units (RTUs) and various industrial I/O cards are some examples of projects I work on.
-          </p>
-          <div class="contact-info">
-            <div class="info-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              <span>b.afrasiyabi@gmail.com</span>
-            </div>
-            <div class="info-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              <span>+989365066966</span>
-            </div>
-            <div class="info-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-              <a href="https://linkedin.com/in/behnam-afrasiyabi" target="_blank">linkedin.com/in/behnam-afrasiyabi</a>
-            </div>
-          </div>
-          <a href="#projects" class="btn">View My Projects</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tools & Software Section -->
-  <section id="tools" class="tools">
-    <div class="container">
-      <h2><span class="highlight">Tools</span> & Software</h2>
-      <div class="tools-grid">
-        <div class="tool-card">
-          <h3>Altium Designer</h3>
-          <p>Professional PCB design for industrial RTUs and I/O cards with high-speed signal integrity and EMC compliance.</p>
-        </div>
-        <div class="tool-card">
-          <h3>LTSpice</h3>
-          <p>Circuit simulation and analysis for power supply design, signal integrity, and analog front-end validation.</p>
-        </div>
-        <div class="tool-card">
-          <h3>OrCAD</h3>
-          <p>Schematic capture and PCB layout for legacy industrial systems and reverse engineering projects.</p>
-        </div>
-        <div class="tool-card">
-          <h3>Solidworks</h3>
-          <p>Mechanical enclosure design and 3D modeling for industrial control panels and sensor housings.</p>
-        </div>
-        <div class="tool-card">
-          <h3>AutoCAD Electrical</h3>
-          <p>Electrical schematics and control system documentation for industrial automation projects.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="projects">
-    <div class="container">
-      <h2><span class="highlight">Featured</span> Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-image">
-            <img class="project-image-trigger" src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=RTU+Design" alt="RTU Design" />
-          </div>
-          <div class="project-content">
-            <h3>Industrial RTU Design</h3>
-            <p>Design and development of Remote Terminal Units (RTUs) for MAPCS industrial control system with full EMC/EMI compliance and robust protection.</p>
-            <div class="tags">
-              <span>RTU</span>
-              <span>PCB Design</span>
-              <span>Industrial</span>
-            </div>
-            <button class="view-3d-btn" data-model="models/rtu-design.glb">View 3D Model</button>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">
-            <img class="project-image-trigger" src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=IoT+Modules" alt="IoT Modules" />
-          </div>
-          <div class="project-content">
-            <h3>IoT Communication Modules</h3>
-            <p>Integrated Zigbee, LoRa, and GSM modules into industrial hardware for remote monitoring and data acquisition.</p>
-            <div class="tags">
-              <span>IoT</span>
-              <span>Wireless</span>
-              <span>Embedded</span>
-            </div>
-            <button class="view-3d-btn" data-model="models/iot-modules.glb">View 3D Model</button>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">
-            <img class="project-image-trigger" src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=Sensor+Tester" alt="Sensor Tester" />
-          </div>
-          <div class="project-content">
-            <h3>Automotive Sensor Tester</h3>
-            <p>Designed a simulation and test platform for in-vehicle sensors to support diagnostics and reverse engineering.</p>
-            <div class="tags">
-              <span>Automotive</span>
-              <span>Testing</span>
-              <span>ECU</span>
-            </div>
-            <button class="view-3d-btn" data-model="models/sensor-tester.glb">View 3D Model</button>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">
-            <img class="project-image-trigger" src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=Smart+Home" alt="Smart Home" />
-          </div>
-          <div class="project-content">
-            <h3>Smart Home Control System</h3>
-            <p>University project for remote control of home appliances via mobile phone using embedded microcontroller.</p>
-            <div class="tags">
-              <span>Smart Home</span>
-              <span>AVR</span>
-              <span>Embedded C</span>
-            </div>
-            <button class="view-3d-btn" data-model="models/smart-home.glb">View 3D Model</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Certifications Section -->
-  <section id="certifications" class="certifications-section">
-    <div class="container">
-      <h2><span class="highlight">Certifications</span></h2>
-      <div class="certifications-wrapper">
-        <div class="certifications-grid">
-          <div class="cert-card" data-cert="1">
-            <div class="cert-image">
-              <img src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=Altium+Cert" alt="Altium Designer Certificate">
-            </div>
-            <div class="cert-content">
-              <h3>High-Speed PCB Layout Design</h3>
-              <p class="issuer">Tehran Institute of Technology</p>
-              <p class="cert-id">ID: 577041</p>
-            </div>
-          </div>
-          <div class="cert-card" data-cert="2">
-            <div class="cert-image">
-              <img src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=AutoCAD+Cert" alt="AutoCAD Electrical Certificate">
-            </div>
-            <div class="cert-content">
-              <h3>AutoCAD Electrical 2014</h3>
-              <p class="issuer">Tehran Institute of Technology</p>
-            </div>
-          </div>
-          <div class="cert-card" data-cert="3">
-            <div class="cert-image">
-              <img src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=AVR+Cert" alt="AVR Microcontroller Certificate">
-            </div>
-            <div class="cert-content">
-              <h3>AVR Microcontroller Programming</h3>
-              <p class="issuer">Tehran Institute of Technology</p>
-              <p class="cert-id">ID: 386281</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3D Viewer Modal -->
-  <div id="3dModal" class="modal">
-    <div class="modal-3d-content">
-      <span class="close">&times;</span>
-      <div id="3dViewer" style="width: 100%; height: 80vh;"></div>
-    </div>
-  </div>
-
-  <!-- Image Modal (for certificates and project images) -->
+  <!-- Image Modal -->
   <div id="imageModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -455,7 +226,3 @@
   </footer>
 </body>
 </html>
-
-
-
-
