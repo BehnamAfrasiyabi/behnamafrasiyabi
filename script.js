@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Image Modal (for project images and certificates)
+  // Image Modal
   const imageModal = document.getElementById('imageModal');
   const modalImg = document.getElementById('modalImage');
   const imageCloseBtn = imageModal.querySelector('.close');
@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const modal3d = document.getElementById('3dModal');
   const close3dBtn = modal3d.querySelector('.close');
 
-  // View 3D buttons
   document.querySelectorAll('.view-3d-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const modelPath = btn.getAttribute('data-model');
@@ -107,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Initialize Three.js viewer
 function init3DViewer(modelPath) {
   dispose3DViewer();
 
@@ -128,7 +126,6 @@ function init3DViewer(modelPath) {
   renderer.setPixelRatio(window.devicePixelRatio);
   container.appendChild(renderer.domElement);
 
-  // Add OrbitControls
   const script = document.createElement('script');
   script.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js';
   script.onload = () => {
@@ -147,14 +144,13 @@ function init3DViewer(modelPath) {
         model = gltf.scene;
         scene.add(model);
 
-        // Center model
         const box = new THREE.Box3().setFromObject(model);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-        cameraZ *= 1.5; // Add padding
+        cameraZ *= 1.5;
         camera.position.z = cameraZ;
         camera.position.x = cameraZ / 2;
         camera.position.y = cameraZ / 2;
@@ -170,10 +166,7 @@ function init3DViewer(modelPath) {
   };
   document.head.appendChild(script);
 
-  // Handle window resize
   window.addEventListener('resize', onWindowResize);
-
-  // Animation loop
   animate();
 }
 
