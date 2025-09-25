@@ -8,7 +8,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Three.js variables
-let scene, camera, renderer, model;
+let scene, camera, renderer, model, controls;
 
 // DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.target === imageModal) {
       imageModal.style.display = 'none';
     }
-  };
+  });
 
   // 3D Viewer Modal
   const modal3d = document.getElementById('3dModal');
@@ -121,32 +121,54 @@ function init3DViewer(modelPath) {
   scene.add(directionalLight);
 
   camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-  camera.position.set(0, 0, 5);
+  camera.position.set(5, 5, 5);
 
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
   container.appendChild(renderer.domElement);
 
-  const loader = new THREE.GLTFLoader();
-  loader.load(
-    modelPath,
-    (gltf) => {
-      model = gltf.scene;
-      scene.add(model);
+  // Add OrbitControls
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js';
+  script.onload = () => {
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.screenSpacePanning = false;
+    controls.minDistance = 2;
+    controls.maxDistance = 20;
+    controls.maxPolarAngle = Math.PI / 2;
 
-      // Center model
-      const box = new THREE.Box3().setFromObject(model);
-      const center = box.getCenter(new THREE.Vector3());
-      model.position.x = -center.x;
-      model.position.y = -center.y;
-      model.position.z = -center.z;
-    },
-    undefined,
-    (error) => {
-      console.error('Error loading 3D model:', error);
-    }
-  );
+    const loader = new THREE.GLTFLoader();
+    loader.load(
+      modelPath,
+      (gltf) => {
+        model = gltf.scene;
+        scene.add(model);
+
+        // Center model
+        const box = new THREE.Box3().setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+        cameraZ *= 1.5; // Add padding
+        camera.position.z = cameraZ;
+        camera.position.x = cameraZ / 2;
+        camera.position.y = cameraZ / 2;
+        camera.lookAt(center);
+        controls.target.copy(center);
+        controls.update();
+      },
+      undefined,
+      (error) => {
+        console.error('Error loading 3D model:', error);
+      }
+    );
+  };
+  document.head.appendChild(script);
 
   // Handle window resize
   window.addEventListener('resize', onWindowResize);
@@ -166,9 +188,7 @@ function onWindowResize() {
 function animate() {
   if (!renderer) return;
   requestAnimationFrame(animate);
-  if (model) {
-    model.rotation.y += 0.01;
-  }
+  if (controls) controls.update();
   renderer.render(scene, camera);
 }
 
@@ -185,6 +205,10 @@ function dispose3DViewer() {
   }
   if (model) {
     model = null;
+  }
+  if (controls) {
+    controls.dispose();
+    controls = null;
   }
   const container = document.getElementById('3dViewer');
   while (container.firstChild) {
