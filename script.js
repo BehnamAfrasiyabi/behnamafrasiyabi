@@ -7,8 +7,9 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Mobile menu toggle
+// DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
+  // Mobile Menu Toggle
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
 
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Smooth scrolling
+  // Smooth Scrolling
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
           behavior: 'smooth'
         });
         
+        // Close mobile menu
         if (navLinks.classList.contains('active')) {
           navLinks.classList.remove('active');
           hamburger.classList.remove('active');
@@ -42,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Certificate Image Modal
+  // Certificate Modal
   const modal = document.getElementById('imageModal');
   const modalImg = document.getElementById('modalImage');
   const closeBtn = document.querySelector('.close');
@@ -67,4 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.style.display = 'none';
     }
   };
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      modal.style.display = 'none';
+    }
+  });
 });
