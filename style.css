@@ -344,6 +344,7 @@ li {
   height: 200px;
   object-fit: cover;
   transition: var(--transition);
+  cursor: pointer;
 }
 
 .project-card:hover .project-image img {
@@ -373,6 +374,24 @@ li {
   border-radius: 5px;
   font-size: 0.8rem;
   font-weight: 600;
+}
+
+.view-3d-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.view-3d-btn:hover {
+  background: rgba(16, 185, 129, 0.25);
+  transform: translateY(-2px);
 }
 
 /* ===== CERTIFICATIONS ===== */
@@ -473,7 +492,7 @@ li {
   font-size: 0.85rem;
 }
 
-/* ===== MODAL ===== */
+/* ===== MODALS ===== */
 .modal {
   display: none;
   position: fixed;
@@ -486,7 +505,8 @@ li {
   backdrop-filter: blur(8px);
 }
 
-.modal-content {
+.modal-content,
+.modal-3d-content {
   position: relative;
   margin: 2rem auto;
   padding: 1.5rem;
@@ -501,6 +521,11 @@ li {
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+#3dViewer {
+  background: #000;
+  border-radius: 8px;
 }
 
 .close {
