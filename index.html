@@ -532,15 +532,21 @@
       overflow: hidden;
       border: 1px solid var(--border);
       transition: var(--transition);
-      min-width: 280px;
+      min-width: 320px;
       flex-shrink: 0;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 0.6s ease-out forwards;
+      cursor: pointer;
     }
 
     .cert-card:nth-child(2) { animation-delay: 0.1s; }
     .cert-card:nth-child(3) { animation-delay: 0.2s; }
+    .cert-card:nth-child(4) { animation-delay: 0.3s; }
+    .cert-card:nth-child(5) { animation-delay: 0.4s; }
+    .cert-card:nth-child(6) { animation-delay: 0.5s; }
+    .cert-card:nth-child(7) { animation-delay: 0.6s; }
+    .cert-card:nth-child(8) { animation-delay: 0.7s; }
 
     .cert-card:hover {
       transform: translateY(-6px);
@@ -548,45 +554,105 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     }
 
-    .cert-image {
+    .cert-icon {
       width: 100%;
-      height: 380px;
-      cursor: pointer;
+      height: 120px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
       overflow: hidden;
     }
 
-    .cert-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .cert-icon::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg);
       transition: var(--transition);
     }
 
-    .cert-card:hover .cert-image img {
-      transform: scale(1.03);
+    .cert-card:hover .cert-icon::before {
+      transform: rotate(45deg) translate(20px, 20px);
+    }
+
+    .cert-icon i {
+      font-size: 3.5rem;
+      color: white;
+      z-index: 2;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
     }
 
     .cert-content {
-      padding: 1.2rem;
+      padding: 1.5rem;
       text-align: center;
     }
 
     .cert-content h3 {
-      font-size: 1.15rem;
-      margin-bottom: 0.4rem;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
       color: var(--text);
+      line-height: 1.4;
     }
 
-    .issuer {
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .cert-id {
+    .cert-details {
       color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .cert-meta {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .cert-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent);
       font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .cert-meta-item i {
+      font-size: 1rem;
+    }
+
+    .pdf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(3, 165, 252, 0.3);
+      border-radius: 6px;
+      background: rgba(3, 165, 252, 0.1);
+    }
+
+    .pdf-link:hover {
+      color: var(--accent-light);
+      background: rgba(3, 165, 252, 0.2);
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .pdf-link i {
+      font-size: 1.1rem;
     }
 
     /* ===== MODALS ===== */
@@ -809,11 +875,15 @@
       }
 
       .cert-card {
-        min-width: 250px;
+        min-width: 280px;
       }
 
-      .cert-image {
-        height: 320px;
+      .cert-icon {
+        height: 100px;
+      }
+
+      .cert-icon i {
+        font-size: 3rem;
       }
       
       .modal-3d-content.fullscreen .close {
@@ -885,8 +955,34 @@
       .software-category {
         font-size: 0.8rem;
       }
+
+      .cert-card {
+        min-width: 250px;
+      }
+
+      .cert-icon {
+        height: 90px;
+      }
+
+      .cert-icon i {
+        font-size: 2.5rem;
+      }
+
+      .cert-content h3 {
+        font-size: 1.1rem;
+      }
+
+      .cert-meta {
+        gap: 0.5rem;
+      }
+
+      .cert-meta-item {
+        font-size: 0.8rem;
+      }
     }
   </style>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <!-- Navigation -->
@@ -1106,51 +1202,146 @@
       <h2><span class="highlight">Certifications</span></h2>
       <div class="certifications-wrapper">
         <div class="certifications-grid">
-          <div class="cert-card" data-cert="1">
-            <div class="cert-image">
-              <img 
-                src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=Altium+Cert" 
-                alt="Altium Designer Certificate"
-                loading="lazy"
-                width="280"
-                height="380"
-              >
+          <!-- Altium Designer Certificate -->
+          <div class="cert-card" onclick="window.open('images/Certifications/Altium.pdf', '_blank')">
+            <div class="cert-icon">
+              <i class="fas fa-microchip"></i>
             </div>
             <div class="cert-content">
-              <h3>High-Speed PCB Layout Design</h3>
-              <p class="issuer">Tehran Institute of Technology</p>
-              <p class="cert-id">ID: 577041</p>
+              <h3>Altium Designer Course</h3>
+              <div class="cert-details">
+                Professional PCB design and layout using Altium Designer software
+              </div>
+              <div class="cert-meta">
+                <div class="cert-meta-item">
+                  <i class="fas fa-star"></i>
+                  <span>Score: 95%</span>
+                </div>
+                <div class="cert-meta-item">
+                  <i class="fas fa-clock"></i>
+                  <span>30 hours</span>
+                </div>
+              </div>
+              <a href="images/Certifications/Altium.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
+                <i class="fas fa-file-pdf"></i>
+                View Certificate
+              </a>
             </div>
           </div>
-          <div class="cert-card" data-cert="2">
-            <div class="cert-image">
-              <img 
-                src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=AutoCAD+Cert" 
-                alt="AutoCAD Electrical Certificate"
-                loading="lazy"
-                width="280"
-                height="380"
-              >
+
+          <!-- PCB High Speed Protocol -->
+          <div class="cert-card" onclick="window.open('images/Certifications/PCB_HIGH.pdf', '_blank')">
+            <div class="cert-icon">
+              <i class="fas fa-bolt"></i>
             </div>
             <div class="cert-content">
-              <h3>AutoCAD Electrical 2014</h3>
-              <p class="issuer">Tehran Institute of Technology</p>
+              <h3>PCB Design for High-Speed Protocols</h3>
+              <div class="cert-details">
+                Advanced PCB design techniques for high-speed digital circuits and protocols
+              </div>
+              <a href="images/Certifications/PCB_HIGH.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
+                <i class="fas fa-file-pdf"></i>
+                View Certificate
+              </a>
             </div>
           </div>
-          <div class="cert-card" data-cert="3">
-            <div class="cert-image">
-              <img 
-                src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=AVR+Cert" 
-                alt="AVR Microcontroller Certificate"
-                loading="lazy"
-                width="280"
-                height="380"
-              >
+
+          <!-- High Frequency PCB Design -->
+          <div class="cert-card" onclick="window.open('images/Certifications/PCB_HIGH_F.pdf', '_blank')">
+            <div class="cert-icon">
+              <i class="fas fa-wave-square"></i>
             </div>
             <div class="cert-content">
-              <h3>AVR Microcontroller Programming</h3>
-              <p class="issuer">Tehran Institute of Technology</p>
-              <p class="cert-id">ID: 386281</p>
+              <h3>High Frequency PCB Design Course</h3>
+              <div class="cert-details">
+                Specialized training in high-frequency circuit board design and RF considerations
+              </div>
+              <a href="images/Certifications/PCB_HIGH_F.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
+                <i class="fas fa-file-pdf"></i>
+                View Certificate
+              </a>
+            </div>
+          </div>
+
+          <!-- PCB Fundamentals -->
+          <div class="cert-card" onclick="window.open('images/Certifications/PCB.pdf', '_blank')">
+            <div class="cert-icon">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <div class="cert-content">
+              <h3>PCB Material Selection & Stack-Up Design</h3>
+              <div class="cert-details">
+                Fundamentals of PCB material selection and stack-up design by Sierra Circuits
+              </div>
+              <a href="images/Certifications/PCB.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
+                <i class="fas fa-file-pdf"></i>
+                View Certificate
+              </a>
+            </div>
+          </div>
+
+          <!-- EMC Certificates -->
+          <div class="cert-card" onclick="window.open('images/Certifications/EMC1.pdf', '_blank')">
+            <div class="cert-icon">
+              <i class="fas fa-satellite-dish"></i>
+            </div>
+            <div class="cert-content">
+              <h3>Electromagnetic Compatibility (EMC) - Part 1</h3>
+              <div class="cert-details">
+                Fundamentals of electromagnetic compatibility and interference control
+              </div>
+              <a href="images/Certifications/EMC1.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
+                <i class="fas fa-file-pdf"></i>
+                View Certificate
+              </a>
+            </div>
+          </div>
+
+          <div class="cert-card" onclick="window.open('images/Certifications/EMC2.pdf', '_blank')">
+            <div class="cert-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="cert-content">
+              <h3>Electromagnetic Compatibility (EMC) - Part 2</h3>
+              <div class="cert-details">
+                Advanced EMC testing methodologies and compliance standards
+              </div>
+              <a href="images/Certifications/EMC2.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
+                <i class="fas fa-file-pdf"></i>
+                View Certificate
+              </a>
+            </div>
+          </div>
+
+          <div class="cert-card" onclick="window.open('images/Certifications/EMC3.pdf', '_blank')">
+            <div class="cert-icon">
+              <i class="fas fa-broadcast-tower"></i>
+            </div>
+            <div class="cert-content">
+              <h3>Electromagnetic Compatibility (EMC) - Part 3</h3>
+              <div class="cert-details">
+                EMC design principles and mitigation techniques for electronic systems
+              </div>
+              <a href="images/Certifications/EMC3.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
+                <i class="fas fa-file-pdf"></i>
+                View Certificate
+              </a>
+            </div>
+          </div>
+
+          <div class="cert-card" onclick="window.open('images/Certifications/EMC4.pdf', '_blank')">
+            <div class="cert-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <div class="cert-content">
+              <h3>Electromagnetic Compatibility (EMC) - Part 4</h3>
+              <div class="cert-details">
+                Practical implementation of EMC solutions in complex electronic designs
+              </div>
+              <a href="images/Certifications/EMC4.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
+                <i class="fas fa-file-pdf"></i>
+                View Certificate
+              </a>
             </div>
           </div>
         </div>
@@ -1244,7 +1435,7 @@
       const modalImg = document.getElementById('modalImage');
       const imageCloseBtn = imageModal.querySelector('.close');
 
-      document.querySelectorAll('.project-image-trigger, .cert-image img').forEach(img => {
+      document.querySelectorAll('.project-image-trigger').forEach(img => {
         img.addEventListener('click', () => {
           modalImg.src = img.src;
           modalImg.alt = img.alt;
