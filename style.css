@@ -6,9 +6,12 @@
 
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .software-item {
@@ -33,18 +36,6 @@
 .software-item:nth-child(4) { animation-delay: 0.25s; }
 .software-item:nth-child(5) { animation-delay: 0.3s; }
 .software-item:nth-child(6) { animation-delay: 0.35s; }
-.software-item:nth-child(7) { animation-delay: 0.4s; }
-.software-item:nth-child(8) { animation-delay: 0.45s; }
-.software-item:nth-child(9) { animation-delay: 0.5s; }
-.software-item:nth-child(10) { animation-delay: 0.55s; }
-.software-item:nth-child(11) { animation-delay: 0.6s; }
-.software-item:nth-child(12) { animation-delay: 0.65s; }
-.software-item:nth-child(13) { animation-delay: 0.7s; }
-.software-item:nth-child(14) { animation-delay: 0.75s; }
-.software-item:nth-child(15) { animation-delay: 0.8s; }
-.software-item:nth-child(16) { animation-delay: 0.85s; }
-.software-item:nth-child(17) { animation-delay: 0.9s; }
-.software-item:nth-child(18) { animation-delay: 0.95s; }
 
 .software-item:hover {
   transform: translateY(-5px);
@@ -53,15 +44,15 @@
 }
 
 .software-logo {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
-  padding: 0.5rem;
+  padding: 0.3rem;
   transition: var(--transition);
 }
 
@@ -84,7 +75,7 @@
 
 .software-name {
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
   line-height: 1.3;
 }
@@ -106,7 +97,7 @@
   }
   
   .tools-grid {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     gap: 1rem;
   }
 }
@@ -170,17 +161,18 @@
   }
   
   .tools-grid {
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    gap: 0.8rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 400px;
   }
   
   .software-item {
-    padding: 1rem 0.5rem;
+    padding: 1.2rem 0.8rem;
   }
   
   .software-logo {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     margin-bottom: 0.8rem;
   }
   
@@ -191,17 +183,18 @@
 
 @media (max-width: 480px) {
   .tools-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    max-width: 300px;
   }
   
   .software-item {
-    padding: 0.8rem 0.3rem;
+    padding: 1rem 0.5rem;
   }
   
   .software-logo {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     margin-bottom: 0.6rem;
   }
   
