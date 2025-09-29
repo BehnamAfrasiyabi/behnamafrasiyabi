@@ -4,28 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Behnam Afrasiyabi - Electronic Design Engineer</title>
+  <meta name="description" content="Behnam Afrasiyabi - Electronic Design Engineer specializing in PCB design, embedded systems, and industrial automation">
+  <meta name="keywords" content="Electronic Design, PCB, Embedded Systems, IoT, Industrial Automation">
+  <meta property="og:title" content="Behnam Afrasiyabi - Electronic Design Engineer">
+  <meta property="og:description" content="Professional Electronic Design Engineer with expertise in industrial automation and embedded systems">
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   <script src="script.js" defer></script>
 </head>
 <body>
   <!-- Navigation -->
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Main navigation">
     <div class="container">
-      <div class="logo">Behnam Afrasiyabi</div>
+      <div class="logo" role="heading" aria-level="1">Behnam Afrasiyabi</div>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#tools">Tools</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#certifications">Certifications</a></li>
       </ul>
-      <div class="hamburger">
+      <button class="hamburger" aria-expanded="false" aria-label="Toggle menu">
         <span></span>
         <span></span>
         <span></span>
-      </div>
+      </button>
     </div>
   </nav>
 
@@ -34,7 +37,13 @@
     <div class="container">
       <div class="hero-content">
         <div class="hero-image">
-          <img src="images/profile.png" alt="Behnam Afrasiyabi" />
+          <img 
+            src="images/profile.png" 
+            alt="Behnam Afrasiyabi"
+            loading="lazy"
+            width="320" 
+            height="320"
+          />
         </div>
         <div class="hero-text">
           <h1>Hello, I'm <span class="highlight">Behnam Afrasiyabi</span></h1>
@@ -55,7 +64,7 @@
             </div>
             <div class="info-item">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-              <a href="https://linkedin.com/in/behnam-afrasiyabi" target="_blank">linkedin.com/in/behnam-afrasiyabi</a>
+              <a href="https://linkedin.com/in/behnam-afrasiyabi" target="_blank" rel="noopener">linkedin.com/in/behnam-afrasiyabi</a>
             </div>
           </div>
           <a href="#projects" class="btn">View My Projects</a>
@@ -100,7 +109,14 @@
       <div class="projects-grid">
         <div class="project-card">
           <div class="project-image">
-            <img class="project-image-trigger" src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=T-Sim200V3" alt="T-Sim200V3" />
+            <img 
+              class="project-image-trigger" 
+              src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=T-Sim200V3" 
+              alt="T-Sim200V3"
+              loading="lazy"
+              width="600"
+              height="400"
+            />
           </div>
           <div class="project-content">
             <h3>T-Sim200V3</h3>
@@ -115,7 +131,14 @@
         </div>
         <div class="project-card">
           <div class="project-image">
-            <img class="project-image-trigger" src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=IoT+Modules" alt="IoT Modules" />
+            <img 
+              class="project-image-trigger" 
+              src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=IoT+Modules" 
+              alt="IoT Modules"
+              loading="lazy"
+              width="600"
+              height="400"
+            />
           </div>
           <div class="project-content">
             <h3>IoT Communication Modules</h3>
@@ -130,7 +153,14 @@
         </div>
         <div class="project-card">
           <div class="project-image">
-            <img class="project-image-trigger" src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=Sensor+Tester" alt="Sensor Tester" />
+            <img 
+              class="project-image-trigger" 
+              src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=Sensor+Tester" 
+              alt="Sensor Tester"
+              loading="lazy"
+              width="600"
+              height="400"
+            />
           </div>
           <div class="project-content">
             <h3>Automotive Sensor Tester</h3>
@@ -145,7 +175,14 @@
         </div>
         <div class="project-card">
           <div class="project-image">
-            <img class="project-image-trigger" src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=Smart+Home" alt="Smart Home" />
+            <img 
+              class="project-image-trigger" 
+              src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=Smart+Home" 
+              alt="Smart Home"
+              loading="lazy"
+              width="600"
+              height="400"
+            />
           </div>
           <div class="project-content">
             <h3>Smart Home Control System</h3>
@@ -170,7 +207,13 @@
         <div class="certifications-grid">
           <div class="cert-card" data-cert="1">
             <div class="cert-image">
-              <img src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=Altium+Cert" alt="Altium Designer Certificate">
+              <img 
+                src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=Altium+Cert" 
+                alt="Altium Designer Certificate"
+                loading="lazy"
+                width="280"
+                height="380"
+              >
             </div>
             <div class="cert-content">
               <h3>High-Speed PCB Layout Design</h3>
@@ -180,7 +223,13 @@
           </div>
           <div class="cert-card" data-cert="2">
             <div class="cert-image">
-              <img src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=AutoCAD+Cert" alt="AutoCAD Electrical Certificate">
+              <img 
+                src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=AutoCAD+Cert" 
+                alt="AutoCAD Electrical Certificate"
+                loading="lazy"
+                width="280"
+                height="380"
+              >
             </div>
             <div class="cert-content">
               <h3>AutoCAD Electrical 2014</h3>
@@ -189,7 +238,13 @@
           </div>
           <div class="cert-card" data-cert="3">
             <div class="cert-image">
-              <img src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=AVR+Cert" alt="AVR Microcontroller Certificate">
+              <img 
+                src="https://placehold.co/280x380/1a1a1a/FFFFFF?text=AVR+Cert" 
+                alt="AVR Microcontroller Certificate"
+                loading="lazy"
+                width="280"
+                height="380"
+              >
             </div>
             <div class="cert-content">
               <h3>AVR Microcontroller Programming</h3>
@@ -205,15 +260,17 @@
   <!-- 3D Viewer Modal -->
   <div id="3dModal" class="modal">
     <div class="modal-3d-content">
-      <span class="close">&times;</span>
-      <div id="3dViewer" style="width: 100%; height: 80vh;"></div>
+      <span class="close" aria-label="Close 3D viewer">&times;</span>
+      <div id="modelContainer" style="width: 100%; height: 80vh;">
+        <div class="loading">Loading 3D Model...</div>
+      </div>
     </div>
   </div>
 
   <!-- Image Modal -->
   <div id="imageModal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="close" aria-label="Close image viewer">&times;</span>
       <img id="modalImage" src="" alt="Preview">
     </div>
   </div>
