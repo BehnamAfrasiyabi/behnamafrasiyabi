@@ -24,6 +24,7 @@
     .modal-3d-content.fullscreen #modelContainer {
       height: 100vh;
       border-radius: 0;
+      background-color: #1a1a1a;
     }
     
     .modal-3d-content.fullmodel-viewer {
@@ -43,6 +44,61 @@
       justify-content: center;
       font-size: 2rem;
       z-index: 2001;
+    }
+
+    /* Loading Animation */
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      color: var(--accent);
+    }
+
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(16, 185, 129, 0.3);
+      border-top: 4px solid var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    .loading-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Pulse animation for loading dots */
+    .loading-dots {
+      display: inline-flex;
+      margin-left: 5px;
+    }
+
+    .loading-dots span {
+      animation: pulse 1.5s infinite ease-in-out;
+      margin: 0 2px;
+    }
+
+    .loading-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .loading-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
     }
   </style>
 </head>
@@ -295,7 +351,10 @@
     <div class="modal-3d-content fullscreen">
       <span class="close" aria-label="Close 3D viewer">&times;</span>
       <div id="modelContainer" style="width: 100%; height: 100vh;">
-        <div class="loading">Loading 3D Model...</div>
+        <div class="loading-container">
+          <div class="loading-spinner"></div>
+          <div class="loading-text">Loading 3D Model<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -451,9 +510,6 @@
       const modal3d = document.getElementById('3dModal');
       const modelContainer = document.getElementById('modelContainer');
       
-      // Show loading state
-      modelContainer.innerHTML = '<div class="loading">Loading 3D Model...</div>';
-      
       // Show modal
       modal3d.style.display = 'block';
       document.body.style.overflow = 'hidden';
@@ -479,13 +535,24 @@
             </div>
           </model-viewer>
         `;
+        
+        // Add event listener to hide loading when model is loaded
+        const modelViewer = modelContainer.querySelector('model-viewer');
+        modelViewer.addEventListener('load', () => {
+          // Model is loaded, we could add any post-load actions here if needed
+        });
       }, 100);
     }
 
     // Clear model viewer
     function clearModelViewer() {
       const modelContainer = document.getElementById('modelContainer');
-      modelContainer.innerHTML = '<div class="loading">Loading 3D Model...</div>';
+      modelContainer.innerHTML = `
+        <div class="loading-container">
+          <div class="loading-spinner"></div>
+          <div class="loading-text">Loading 3D Model<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></div>
+        </div>
+      `;
     }
 
     // Lazy loading for models
