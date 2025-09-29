@@ -283,6 +283,7 @@ li {
 .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(3, 165, 252, 0.45);
+  background: linear-gradient(90deg, var(--accent-light), var(--accent));
 }
 
 /* ===== TOOLS & SOFTWARE ===== */
@@ -357,6 +358,7 @@ li {
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 450px;
 }
 
 .project-card:nth-child(1) { animation: fadeInUp 0.8s ease-out 0.3s forwards; }
@@ -387,7 +389,8 @@ li {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: space-between;
+  position: relative;
+  padding-bottom: 70px;
 }
 
 .project-content h3 {
@@ -395,9 +398,20 @@ li {
   margin-bottom: 0.8rem;
 }
 
+.project-content p {
+  flex-grow: 1;
+  margin-bottom: 0;
+}
+
+.button-container {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+}
+
 .view-3d-btn {
   display: inline-block;
-  margin-top: auto;
   padding: 0.6rem 1.2rem;
   background: rgba(3, 165, 252, 0.15);
   color: var(--accent);
@@ -407,13 +421,15 @@ li {
   cursor: pointer;
   transition: var(--transition);
   border: none;
-  width: 100%;
   text-align: center;
+  width: auto;
 }
 
 .view-3d-btn:hover {
   background: rgba(3, 165, 252, 0.25);
   transform: translateY(-2px);
+  color: #ffffff;
+  border-color: var(--accent);
 }
 
 /* ===== CERTIFICATIONS ===== */
@@ -722,5 +738,9 @@ footer {
   
   .loading-text {
     font-size: 1rem;
+  }
+  
+  .project-card {
+    min-height: 400px;
   }
 }
