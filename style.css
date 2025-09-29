@@ -167,6 +167,9 @@ li {
   flex-direction: column;
   cursor: pointer;
   gap: 4px;
+  background: none;
+  border: none;
+  padding: 0.5rem;
 }
 
 .hamburger span {
@@ -175,6 +178,31 @@ li {
   background: var(--text);
   border-radius: 2px;
   transition: var(--transition);
+}
+
+/* Mobile Navigation */
+.nav-links.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--primary-bg);
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
 }
 
 /* ===== HERO SECTION ===== */
@@ -387,6 +415,7 @@ li {
   font-size: 0.9rem;
   cursor: pointer;
   transition: var(--transition);
+  border: none;
 }
 
 .view-3d-btn:hover {
@@ -523,9 +552,21 @@ li {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
 }
 
-#3dViewer {
+#modelContainer {
   background: #000;
   border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .close {
@@ -537,10 +578,21 @@ li {
   font-weight: bold;
   cursor: pointer;
   transition: var(--transition);
+  background: none;
+  border: none;
 }
 
 .close:hover {
   color: var(--accent);
+}
+
+/* Model Viewer Customization */
+model-viewer {
+  width: 100%;
+  height: 100%;
+  --progress-bar-color: var(--accent);
+  --progress-bar-height: 4px;
+  --poster-color: var(--card-bg);
 }
 
 /* ===== FOOTER ===== */
