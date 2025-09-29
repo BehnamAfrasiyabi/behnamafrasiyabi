@@ -11,7 +11,40 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
-  
+  <style>
+    /* Additional inline styles for fullscreen 3D viewer */
+    .modal-3d-content.fullscreen {
+      width: 100%;
+      height: 100vh;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .modal-3d-content.fullscreen #modelContainer {
+      height: 100vh;
+      border-radius: 0;
+    }
+    
+    .modal-3d-content.fullmodel-viewer {
+      --progress-bar-color: #10b981;
+      --progress-bar-height: 4px;
+    }
+    
+    .modal-3d-content.fullscreen .close {
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      z-index: 2001;
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation -->
@@ -259,9 +292,9 @@
 
   <!-- 3D Viewer Modal -->
   <div id="3dModal" class="modal">
-    <div class="modal-3d-content">
+    <div class="modal-3d-content fullscreen">
       <span class="close" aria-label="Close 3D viewer">&times;</span>
-      <div id="modelContainer" style="width: 100%; height: 80vh;">
+      <div id="modelContainer" style="width: 100%; height: 100vh;">
         <div class="loading">Loading 3D Model...</div>
       </div>
     </div>
@@ -283,7 +316,7 @@
   </footer>
 
   <script>
-      // Navbar scroll effect
+    // Navbar scroll effect
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
         document.body.classList.add('scrolled');
@@ -291,13 +324,13 @@
         document.body.classList.remove('scrolled');
       }
     });
-    
+
     // DOM Ready
     document.addEventListener('DOMContentLoaded', () => {
       // Mobile Menu Toggle
       const hamburger = document.querySelector('.hamburger');
       const navLinks = document.querySelector('.nav-links');
-    
+
       if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
           navLinks.classList.toggle('active');
@@ -305,7 +338,7 @@
           hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
         });
       }
-    
+
       // Close mobile menu when clicking on a link
       document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
@@ -316,7 +349,7 @@
           }
         });
       });
-    
+
       // Smooth Scrolling
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -334,12 +367,12 @@
           }
         });
       });
-    
+
       // Image Modal
       const imageModal = document.getElementById('imageModal');
       const modalImg = document.getElementById('modalImage');
       const imageCloseBtn = imageModal.querySelector('.close');
-    
+
       document.querySelectorAll('.project-image-trigger, .cert-image img').forEach(img => {
         img.addEventListener('click', () => {
           modalImg.src = img.src;
@@ -348,26 +381,25 @@
           document.body.style.overflow = 'hidden';
         });
       });
-    
+
       if (imageCloseBtn) {
         imageCloseBtn.onclick = () => {
           imageModal.style.display = 'none';
           document.body.style.overflow = 'auto';
         };
       }
-    
+
       // 3D Viewer Modal
       const modal3d = document.getElementById('3dModal');
       const close3dBtn = modal3d.querySelector('.close');
-      const modelContainer = document.getElementById('modelContainer');
-    
+
       document.querySelectorAll('.view-3d-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const modelPath = btn.getAttribute('data-model');
           open3DViewer(modelPath);
         });
       });
-    
+
       if (close3dBtn) {
         close3dBtn.onclick = () => {
           modal3d.style.display = 'none';
@@ -375,16 +407,22 @@
           clearModelViewer();
         };
       }
-    
+
       // Modal close events
       setupModalEvents();
+      
+      // Start observing for lazy loading
+      const projectsSection = document.querySelector('.projects');
+      if (projectsSection) {
+        modelObserver.observe(projectsSection);
+      }
     });
-    
+
     // Setup modal close events
     function setupModalEvents() {
       const imageModal = document.getElementById('imageModal');
       const modal3d = document.getElementById('3dModal');
-    
+
       window.addEventListener('click', (event) => {
         if (event.target === imageModal) {
           imageModal.style.display = 'none';
@@ -396,7 +434,7 @@
           clearModelViewer();
         }
       });
-    
+
       // Close modals with Escape key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -407,7 +445,7 @@
         }
       });
     }
-    
+
     // Open 3D Viewer with model-viewer component
     function open3DViewer(modelPath) {
       const modal3d = document.getElementById('3dModal');
@@ -434,6 +472,7 @@
             touch-action="pan-y"
             auto-rotate
             camera-orbit="45deg 55deg 2.5m"
+            style="width: 100%; height: 100%;"
           >
             <div class="progress-bar hide" slot="progress-bar">
               <div class="update-bar"></div>
@@ -442,13 +481,13 @@
         `;
       }, 100);
     }
-    
+
     // Clear model viewer
     function clearModelViewer() {
       const modelContainer = document.getElementById('modelContainer');
       modelContainer.innerHTML = '<div class="loading">Loading 3D Model...</div>';
     }
-    
+
     // Lazy loading for models
     const modelObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -459,15 +498,7 @@
         }
       });
     });
-    
-    // Start observing when DOM is ready
-    document.addEventListener('DOMContentLoaded', () => {
-      const projectsSection = document.querySelector('.projects');
-      if (projectsSection) {
-        modelObserver.observe(projectsSection);
-      }
-    });
-    
+
     // Preload models for better performance
     function preloadModels() {
       const models = [
@@ -485,7 +516,6 @@
         document.head.appendChild(link);
       });
     }
-</script>
+  </script>
 </body>
 </html>
-
