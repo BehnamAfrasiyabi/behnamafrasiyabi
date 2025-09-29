@@ -520,33 +520,35 @@
     }
 
     .certifications-grid {
-      display: flex;
-      gap: 2rem;
-      padding: 0 1rem;
-      min-width: max-content;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 0 0.5rem;
     }
 
     .cert-card {
       background: var(--card-bg);
-      border-radius: 16px;
-      overflow: hidden;
+      border-radius: 12px;
       border: 1px solid var(--border);
       transition: var(--transition);
-      min-width: 320px;
-      flex-shrink: 0;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 0.6s ease-out forwards;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 280px;
     }
 
-    .cert-card:nth-child(2) { animation-delay: 0.1s; }
+    .cert-card:nth-child(1) { animation-delay: 0.1s; }
+    .cert-card:nth-child(2) { animation-delay: 0.15s; }
     .cert-card:nth-child(3) { animation-delay: 0.2s; }
-    .cert-card:nth-child(4) { animation-delay: 0.3s; }
-    .cert-card:nth-child(5) { animation-delay: 0.4s; }
-    .cert-card:nth-child(6) { animation-delay: 0.5s; }
-    .cert-card:nth-child(7) { animation-delay: 0.6s; }
-    .cert-card:nth-child(8) { animation-delay: 0.7s; }
+    .cert-card:nth-child(4) { animation-delay: 0.25s; }
+    .cert-card:nth-child(5) { animation-delay: 0.3s; }
+    .cert-card:nth-child(6) { animation-delay: 0.35s; }
+    .cert-card:nth-child(7) { animation-delay: 0.4s; }
+    .cert-card:nth-child(8) { animation-delay: 0.45s; }
 
     .cert-card:hover {
       transform: translateY(-6px);
@@ -556,7 +558,7 @@
 
     .cert-icon {
       width: 100%;
-      height: 120px;
+      height: 80px;
       background: linear-gradient(135deg, var(--accent), var(--accent-light));
       display: flex;
       align-items: center;
@@ -582,7 +584,7 @@
     }
 
     .cert-icon i {
-      font-size: 3.5rem;
+      font-size: 2.5rem;
       color: white;
       z-index: 2;
       filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
@@ -590,11 +592,15 @@
 
     .cert-content {
       padding: 1.5rem;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      position: relative;
+      padding-bottom: 70px;
     }
 
     .cert-content h3 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: 0.8rem;
       color: var(--text);
       line-height: 1.4;
@@ -603,14 +609,13 @@
     .cert-details {
       color: var(--text-secondary);
       font-size: 0.9rem;
-      margin-bottom: 1rem;
       line-height: 1.5;
+      flex-grow: 1;
     }
 
     .cert-meta {
       display: flex;
-      justify-content: center;
-      gap: 1rem;
+      justify-content: space-between;
       margin-bottom: 1rem;
       flex-wrap: wrap;
     }
@@ -631,8 +636,8 @@
     .pdf-link {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
-      margin-top: 0.8rem;
       color: var(--accent);
       font-size: 0.9rem;
       font-weight: 500;
@@ -642,6 +647,11 @@
       border: 1px solid rgba(3, 165, 252, 0.3);
       border-radius: 6px;
       background: rgba(3, 165, 252, 0.1);
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      text-align: center;
     }
 
     .pdf-link:hover {
@@ -870,20 +880,21 @@
         padding: 9rem 0 3rem;
       }
 
-      .certifications-wrapper {
-        padding: 0 0.5rem;
+      .certifications-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
       }
 
       .cert-card {
-        min-width: 280px;
+        min-height: 260px;
       }
 
       .cert-icon {
-        height: 100px;
+        height: 70px;
       }
 
       .cert-icon i {
-        font-size: 3rem;
+        font-size: 2rem;
       }
       
       .modal-3d-content.fullscreen .close {
@@ -956,20 +967,24 @@
         font-size: 0.8rem;
       }
 
+      .certifications-grid {
+        grid-template-columns: 1fr;
+      }
+
       .cert-card {
-        min-width: 250px;
+        min-height: 250px;
       }
 
       .cert-icon {
-        height: 90px;
+        height: 60px;
       }
 
       .cert-icon i {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
       }
 
       .cert-content h3 {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
 
       .cert-meta {
@@ -1208,9 +1223,9 @@
               <i class="fas fa-microchip"></i>
             </div>
             <div class="cert-content">
-              <h3>Altium Designer Course</h3>
+              <h3>Altium Designer Professional</h3>
               <div class="cert-details">
-                Professional PCB design and layout using Altium Designer software
+                Advanced PCB design, multi-layer layouts, and high-speed digital circuit implementation
               </div>
               <div class="cert-meta">
                 <div class="cert-meta-item">
@@ -1235,9 +1250,9 @@
               <i class="fas fa-bolt"></i>
             </div>
             <div class="cert-content">
-              <h3>PCB Design for High-Speed Protocols</h3>
+              <h3>High-Speed PCB Design</h3>
               <div class="cert-details">
-                Advanced PCB design techniques for high-speed digital circuits and protocols
+                Signal integrity, impedance control, and routing techniques for high-speed digital interfaces
               </div>
               <a href="images/Certifications/PCB_HIGH.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
                 <i class="fas fa-file-pdf"></i>
@@ -1252,9 +1267,9 @@
               <i class="fas fa-wave-square"></i>
             </div>
             <div class="cert-content">
-              <h3>High Frequency PCB Design Course</h3>
+              <h3>RF & High-Frequency PCB Design</h3>
               <div class="cert-details">
-                Specialized training in high-frequency circuit board design and RF considerations
+                RF circuit design, transmission lines, and electromagnetic optimization for wireless applications
               </div>
               <a href="images/Certifications/PCB_HIGH_F.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
                 <i class="fas fa-file-pdf"></i>
@@ -1269,9 +1284,9 @@
               <i class="fas fa-layer-group"></i>
             </div>
             <div class="cert-content">
-              <h3>PCB Material Selection & Stack-Up Design</h3>
+              <h3>PCB Materials & Stack-up</h3>
               <div class="cert-details">
-                Fundamentals of PCB material selection and stack-up design by Sierra Circuits
+                Material selection, layer stack-up design, and manufacturing considerations by Sierra Circuits
               </div>
               <a href="images/Certifications/PCB.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
                 <i class="fas fa-file-pdf"></i>
@@ -1286,9 +1301,9 @@
               <i class="fas fa-satellite-dish"></i>
             </div>
             <div class="cert-content">
-              <h3>Electromagnetic Compatibility (EMC) - Part 1</h3>
+              <h3>EMC Fundamentals</h3>
               <div class="cert-details">
-                Fundamentals of electromagnetic compatibility and interference control
+                Electromagnetic compatibility principles, interference sources, and basic mitigation strategies
               </div>
               <a href="images/Certifications/EMC1.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
                 <i class="fas fa-file-pdf"></i>
@@ -1302,9 +1317,9 @@
               <i class="fas fa-shield-alt"></i>
             </div>
             <div class="cert-content">
-              <h3>Electromagnetic Compatibility (EMC) - Part 2</h3>
+              <h3>EMC Testing & Standards</h3>
               <div class="cert-details">
-                Advanced EMC testing methodologies and compliance standards
+                Compliance testing methodologies, international standards, and certification requirements
               </div>
               <a href="images/Certifications/EMC2.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
                 <i class="fas fa-file-pdf"></i>
@@ -1318,9 +1333,9 @@
               <i class="fas fa-broadcast-tower"></i>
             </div>
             <div class="cert-content">
-              <h3>Electromagnetic Compatibility (EMC) - Part 3</h3>
+              <h3>EMC Design Principles</h3>
               <div class="cert-details">
-                EMC design principles and mitigation techniques for electronic systems
+                PCB layout techniques, shielding, filtering, and grounding for electromagnetic compatibility
               </div>
               <a href="images/Certifications/EMC3.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
                 <i class="fas fa-file-pdf"></i>
@@ -1334,9 +1349,9 @@
               <i class="fas fa-cogs"></i>
             </div>
             <div class="cert-content">
-              <h3>Electromagnetic Compatibility (EMC) - Part 4</h3>
+              <h3>Advanced EMC Implementation</h3>
               <div class="cert-details">
-                Practical implementation of EMC solutions in complex electronic designs
+                Practical EMC solutions for complex systems, troubleshooting, and performance optimization
               </div>
               <a href="images/Certifications/EMC4.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
                 <i class="fas fa-file-pdf"></i>
