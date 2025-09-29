@@ -538,7 +538,20 @@
       display: flex;
       flex-direction: column;
       height: 100%;
-      min-height: 280px;
+      min-height: 240px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      opacity: 0.7;
     }
 
     .cert-card:nth-child(1) { animation-delay: 0.1s; }
@@ -554,40 +567,6 @@
       transform: translateY(-6px);
       border-color: var(--accent);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    }
-
-    .cert-icon {
-      width: 100%;
-      height: 80px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-light));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cert-icon::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-      transform: rotate(45deg);
-      transition: var(--transition);
-    }
-
-    .cert-card:hover .cert-icon::before {
-      transform: rotate(45deg) translate(20px, 20px);
-    }
-
-    .cert-icon i {
-      font-size: 2.5rem;
-      color: white;
-      z-index: 2;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
     }
 
     .cert-content {
@@ -886,15 +865,7 @@
       }
 
       .cert-card {
-        min-height: 260px;
-      }
-
-      .cert-icon {
-        height: 70px;
-      }
-
-      .cert-icon i {
-        font-size: 2rem;
+        min-height: 220px;
       }
       
       .modal-3d-content.fullscreen .close {
@@ -972,15 +943,7 @@
       }
 
       .cert-card {
-        min-height: 250px;
-      }
-
-      .cert-icon {
-        height: 60px;
-      }
-
-      .cert-icon i {
-        font-size: 1.8rem;
+        min-height: 200px;
       }
 
       .cert-content h3 {
@@ -1219,9 +1182,6 @@
         <div class="certifications-grid">
           <!-- Altium Designer Certificate -->
           <div class="cert-card" onclick="window.open('images/Certifications/Altium.pdf', '_blank')">
-            <div class="cert-icon">
-              <i class="fas fa-microchip"></i>
-            </div>
             <div class="cert-content">
               <h3>Altium Designer Professional</h3>
               <div class="cert-details">
@@ -1246,9 +1206,6 @@
 
           <!-- PCB High Speed Protocol -->
           <div class="cert-card" onclick="window.open('images/Certifications/PCB_HIGH.pdf', '_blank')">
-            <div class="cert-icon">
-              <i class="fas fa-bolt"></i>
-            </div>
             <div class="cert-content">
               <h3>High-Speed PCB Design</h3>
               <div class="cert-details">
@@ -1263,9 +1220,6 @@
 
           <!-- High Frequency PCB Design -->
           <div class="cert-card" onclick="window.open('images/Certifications/PCB_HIGH_F.pdf', '_blank')">
-            <div class="cert-icon">
-              <i class="fas fa-wave-square"></i>
-            </div>
             <div class="cert-content">
               <h3>RF & High-Frequency PCB Design</h3>
               <div class="cert-details">
@@ -1280,9 +1234,6 @@
 
           <!-- PCB Fundamentals -->
           <div class="cert-card" onclick="window.open('images/Certifications/PCB.pdf', '_blank')">
-            <div class="cert-icon">
-              <i class="fas fa-layer-group"></i>
-            </div>
             <div class="cert-content">
               <h3>PCB Materials & Stack-up</h3>
               <div class="cert-details">
@@ -1297,9 +1248,6 @@
 
           <!-- EMC Certificates -->
           <div class="cert-card" onclick="window.open('images/Certifications/EMC1.pdf', '_blank')">
-            <div class="cert-icon">
-              <i class="fas fa-satellite-dish"></i>
-            </div>
             <div class="cert-content">
               <h3>EMC Fundamentals</h3>
               <div class="cert-details">
@@ -1313,9 +1261,6 @@
           </div>
 
           <div class="cert-card" onclick="window.open('images/Certifications/EMC2.pdf', '_blank')">
-            <div class="cert-icon">
-              <i class="fas fa-shield-alt"></i>
-            </div>
             <div class="cert-content">
               <h3>EMC Testing & Standards</h3>
               <div class="cert-details">
@@ -1329,9 +1274,6 @@
           </div>
 
           <div class="cert-card" onclick="window.open('images/Certifications/EMC3.pdf', '_blank')">
-            <div class="cert-icon">
-              <i class="fas fa-broadcast-tower"></i>
-            </div>
             <div class="cert-content">
               <h3>EMC Design Principles</h3>
               <div class="cert-details">
@@ -1345,9 +1287,6 @@
           </div>
 
           <div class="cert-card" onclick="window.open('images/Certifications/EMC4.pdf', '_blank')">
-            <div class="cert-icon">
-              <i class="fas fa-cogs"></i>
-            </div>
             <div class="cert-content">
               <h3>Advanced EMC Implementation</h3>
               <div class="cert-details">
