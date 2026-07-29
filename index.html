@@ -1,1545 +1,634 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Behnam Afrasiyabi - Electronic Design Engineer</title>
-  <meta name="description" content="Behnam Afrasiyabi - Electronic Design Engineer specializing in PCB design, embedded systems, and industrial automation">
-  <meta name="keywords" content="Electronic Design, PCB, Embedded Systems, IoT, Industrial Automation">
-  <meta property="og:title" content="Behnam Afrasiyabi - Electronic Design Engineer">
-  <meta property="og:description" content="Professional Electronic Design Engineer with expertise in industrial automation and embedded systems">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
-  <style>
-    /* ===== RESET & VARIABLES ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --primary-bg: #0a0a0a;
-      --secondary-bg: #121212;
-      --card-bg: #1a1a1a;
-      --accent: #03a5fc;
-      --accent-light: #4bc3ff;
-      --text: #ffffff;
-      --text-secondary: #b0b0b0;
-      --border: #333333;
-      --shadow: rgba(0, 0, 0, 0.4);
-      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--primary-bg);
-      color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    /* ===== TYPOGRAPHY ===== */
-    h1, h2, h3, h4 {
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1.25rem;
-    }
-
-    h1 span.highlight {
-      position: relative;
-      display: inline-block;
-    }
-
-    h1 span.highlight::after {
-      content: '';
-      position: absolute;
-      bottom: 8px;
-      left: 0;
-      width: 100%;
-      height: 6px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-light));
-      opacity: 0.3;
-      z-index: -1;
-      border-radius: 3px;
-    }
-
-    h2 {
-      font-size: 2.2rem;
-      text-align: center;
-      margin: 3rem 0 2.5rem;
-      position: relative;
-    }
-
-    h2::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background: var(--accent);
-      margin: 0.8rem auto 0;
-      border-radius: 2px;
-    }
-
-    p {
-      margin-bottom: 1rem;
-      color: var(--text-secondary);
-      font-size: 1.05rem;
-    }
-
-    a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    a:hover {
-      color: var(--accent);
-    }
-
-    ul {
-      padding-left: 1.5rem;
-      margin: 1rem 0;
-    }
-
-    li {
-      margin-bottom: 0.4rem;
-      color: var(--text-secondary);
-    }
-
-    /* ===== NAVIGATION ===== */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(12px);
-      padding: 1.1rem 0;
-      z-index: 1000;
-      border-bottom: 1px solid var(--border);
-      transition: var(--transition);
-    }
-
-    .navbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.35rem;
-      font-weight: 800;
-      background: linear-gradient(90deg, var(--text), var(--accent-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      font-weight: 600;
-      position: relative;
-      padding: 0.4rem 0;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 4px;
-      background: none;
-      border: none;
-      padding: 0.5rem;
-    }
-
-    .hamburger span {
-      width: 26px;
-      height: 3px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: var(--transition);
-    }
-
-    /* Mobile Navigation */
-    .nav-links.active {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: var(--primary-bg);
-      padding: 1rem 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -6px);
-    }
-
-    /* ===== HERO SECTION ===== */
-    .hero {
-      padding: 11rem 0 4rem;
-      position: relative;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at top right, rgba(3, 165, 252, 0.05), transparent 30%);
-      z-index: -1;
-    }
-
-    .hero-content {
-      display: flex;
-      align-items: flex-start;
-      gap: 3.5rem;
-    }
-
-    .hero-image {
-      flex-shrink: 0;
-    }
-
-    .hero-image img {
-      width: 100%;
-      max-width: 320px;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--border);
-      transition: var(--transition);
-    }
-
-    .hero-image img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-    }
-
-    .hero-text {
-      flex: 1;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1s ease-out forwards;
-    }
-
-    .contact-info {
-      margin: 1.8rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-
-    .info-item {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      color: var(--text-secondary);
-      font-size: 1.05rem;
-    }
-
-    .btn {
-      display: inline-block;
-      background: linear-gradient(90deg, var(--accent), var(--accent-light));
-      color: #000;
-      font-weight: 700;
-      padding: 0.85rem 2rem;
-      border-radius: 10px;
-      margin-top: 1rem;
-      transition: var(--transition);
-      box-shadow: 0 4px 15px rgba(3, 165, 252, 0.3);
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(3, 165, 252, 0.45);
-      background: linear-gradient(90deg, var(--accent-light), var(--accent));
-    }
-
-    /* ===== TOOLS & SOFTWARE ===== */
-    .tools {
-      padding: 3rem 0;
-      background-color: var(--secondary-bg);
-    }
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .software-item {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1.5rem;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      text-align: left;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-
-    /* Animation delays for staggered appearance */
-    .software-item:nth-child(1) { animation-delay: 0.1s; }
-    .software-item:nth-child(2) { animation-delay: 0.15s; }
-    .software-item:nth-child(3) { animation-delay: 0.2s; }
-    .software-item:nth-child(4) { animation-delay: 0.25s; }
-    .software-item:nth-child(5) { animation-delay: 0.3s; }
-    .software-item:nth-child(6) { animation-delay: 0.35s; }
-
-    .software-item:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .software-logo {
-      width: 60px;
-      height: 60px;
-      margin-right: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 0.5rem;
-      transition: var(--transition);
-      flex-shrink: 0;
-    }
-
-    .software-item:hover .software-logo {
-      background: rgba(3, 165, 252, 0.1);
-      transform: scale(1.05);
-    }
-
-    .software-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: brightness(0.9);
-      transition: var(--transition);
-    }
-
-    .software-item:hover .software-logo img {
-      filter: brightness(1.1);
-    }
-
-    .software-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .software-name {
-      color: var(--text);
-      font-size: 1.1rem;
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 0.3rem;
-    }
-
-    .software-category {
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 500;
-      opacity: 0.8;
-    }
-
-    /* ===== PROJECTS ===== */
-    .projects {
-      padding: 5rem 0;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .project-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      opacity: 0;
-      transform: translateY(30px);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      min-height: 450px;
-    }
-
-    .project-card:nth-child(1) { animation: fadeInUp 0.8s ease-out 0.3s forwards; }
-    .project-card:nth-child(2) { animation: fadeInUp 0.8s ease-out 0.4s forwards; }
-    .project-card:nth-child(3) { animation: fadeInUp 0.8s ease-out 0.5s forwards; }
-    .project-card:nth-child(4) { animation: fadeInUp 0.8s ease-out 0.6s forwards; }
-
-    .project-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-    }
-
-    .project-image img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-
-    .project-card:hover .project-image img {
-      transform: scale(1.03);
-    }
-
-    .project-content {
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      position: relative;
-      padding-bottom: 70px;
-    }
-
-    .project-content h3 {
-      font-size: 1.35rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .project-content p {
-      flex-grow: 1;
-      margin-bottom: 0;
-    }
-
-    .button-container {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      right: 1.5rem;
-    }
-
-    .view-3d-btn {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      background: rgba(3, 165, 252, 0.15);
-      color: var(--accent);
-      border: 1px solid rgba(3, 165, 252, 0.3);
-      border-radius: 6px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: var(--transition);
-      border: none;
-      text-align: center;
-      width: auto;
-    }
-
-    .view-3d-btn:hover {
-      background: rgba(3, 165, 252, 0.25);
-      transform: translateY(-2px);
-      color: #ffffff;
-      border-color: var(--accent);
-    }
-
-    /* ===== CERTIFICATIONS ===== */
-    .certifications-section {
-      padding: 5rem 0;
-      background-color: var(--secondary-bg);
-    }
-
-    .certifications-wrapper {
-      margin-top: 2rem;
-      overflow-x: auto;
-      padding-bottom: 1.5rem;
-      scrollbar-width: thin;
-      scrollbar-color: var(--accent) var(--border);
-    }
-
-    .certifications-wrapper::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .certifications-wrapper::-webkit-scrollbar-track {
-      background: var(--border);
-      border-radius: 4px;
-    }
-
-    .certifications-wrapper::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 4px;
-    }
-
-    .certifications-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 0 0.5rem;
-    }
-
-    .cert-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s ease-out forwards;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      min-height: 240px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cert-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-light));
-      opacity: 0.7;
-    }
-
-    .cert-card:nth-child(1) { animation-delay: 0.1s; }
-    .cert-card:nth-child(2) { animation-delay: 0.15s; }
-    .cert-card:nth-child(3) { animation-delay: 0.2s; }
-    .cert-card:nth-child(4) { animation-delay: 0.25s; }
-    .cert-card:nth-child(5) { animation-delay: 0.3s; }
-    .cert-card:nth-child(6) { animation-delay: 0.35s; }
-    .cert-card:nth-child(7) { animation-delay: 0.4s; }
-    .cert-card:nth-child(8) { animation-delay: 0.45s; }
-
-    .cert-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--accent);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    }
-
-    .cert-content {
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      position: relative;
-      padding-bottom: 70px;
-    }
-
-    .cert-content h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.8rem;
-      color: var(--text);
-      line-height: 1.4;
-    }
-
-    .cert-details {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.5;
-      flex-grow: 1;
-    }
-
-    .cert-meta {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .cert-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    .cert-meta-item i {
-      font-size: 1rem;
-    }
-
-    .pdf-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: var(--transition);
-      padding: 0.5rem 1rem;
-      border: 1px solid rgba(3, 165, 252, 0.3);
-      border-radius: 6px;
-      background: rgba(3, 165, 252, 0.1);
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      right: 1.5rem;
-      text-align: center;
-    }
-
-    .pdf-link:hover {
-      color: var(--accent-light);
-      background: rgba(3, 165, 252, 0.2);
-      transform: translateY(-2px);
-      border-color: var(--accent);
-    }
-
-    .pdf-link i {
-      font-size: 1.1rem;
-    }
-
-    /* ===== MODALS ===== */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(8px);
-    }
-
-    .modal-content,
-    .modal-3d-content {
-      position: relative;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      width: 90%;
-      max-width: 900px;
-      animation: fadeIn 0.3s ease-out;
-    }
-
-    #modalImage {
-      width: 100%;
-      max-height: 80vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
-    }
-
-    #modelContainer {
-      background: #333333;
-      border-radius: 8px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .loading-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      color: #03a5fc;
-    }
-
-    .loading-spinner {
-      width: 60px;
-      height: 60px;
-      border: 4px solid rgba(3, 165, 252, 0.3);
-      border-top: 4px solid #03a5fc;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-
-    .loading-text {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #03a5fc;
-    }
-
-    .loading-dots {
-      display: inline-flex;
-      margin-left: 5px;
-    }
-
-    .loading-dots span {
-      animation: pulse 1.5s infinite ease-in-out;
-      margin: 0 2px;
-    }
-
-    .loading-dots span:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .loading-dots span:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    .close {
-      position: absolute;
-      top: -50px;
-      right: 0;
-      color: white;
-      font-size: 2.8rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: var(--transition);
-      background: none;
-      border: none;
-      z-index: 2001;
-    }
-
-    .close:hover {
-      color: var(--accent);
-    }
-
-    /* Model Viewer Customization */
-    model-viewer {
-      width: 100%;
-      height: 100%;
-      --progress-bar-color: #03a5fc;
-      --progress-bar-height: 4px;
-      --poster-color: #333333;
-      background-color: #333333;
-    }
-
-    /* Additional inline styles for fullscreen 3D viewer */
-    .modal-3d-content.fullscreen {
-      width: 100%;
-      height: 100vh;
-      max-width: none;
-      margin: 0;
-      padding: 0;
-    }
-    
-    .modal-3d-content.fullscreen #modelContainer {
-      height: 100vh;
-      border-radius: 0;
-      background-color: #333333;
-    }
-    
-    .modal-3d-content.fullmodel-viewer {
-      --progress-bar-color: #03a5fc;
-      --progress-bar-height: 4px;
-    }
-    
-    .modal-3d-content.fullscreen .close {
-      top: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      z-index: 2001;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      padding: 2.5rem 0;
-      text-align: center;
-      color: var(--text-secondary);
-      border-top: 1px solid var(--border);
-      margin-top: 3rem;
-    }
-
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Behnam Afrasiyabi | Electronic Design Engineer</title>
+<meta name="description" content="Portfolio of Behnam Afrasiyabi — Electronic Design Engineer specializing in PCB design, industrial hardware, and EMC compliance.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        background: '#050505',
+        foreground: '#f0f0f0',
+        primary: '#0ea5e9',
+        'muted-foreground': '#8b8ba3',
+        border: '#1e1e32',
+        card: '#0d0d0d',
       }
     }
+  }
+}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js" type="module"></script>
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+* { box-sizing: border-box; }
+body { background: #050505; color: #f0f0f0; font-family: 'Inter', system-ui, -apple-system, sans-serif; margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
+.text-gradient {
+  background: linear-gradient(135deg, #0ea5e9, #8b5cf6, #06b6d4);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 
-    /* ===== RESPONSIVE DESIGN ===== */
-    @media (max-width: 950px) {
-      .hero-content {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-      }
+.glass {
+  background: rgba(13, 13, 13, 0.7);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.glass-light {
+  background: rgba(20, 20, 37, 0.6);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.glow-cyan { box-shadow: 0 0 20px rgba(14,165,233,0.15), 0 0 60px rgba(14,165,233,0.05); }
+.glow-border { position: relative; }
+.glow-border::before {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(14,165,233,0.3), rgba(139,92,246,0.3), rgba(6,182,212,0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; padding: 1px;
+  opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+}
+.glow-border:hover::before { opacity: 1; }
 
-      .contact-info {
-        align-items: center;
-      }
+@keyframes circuit-flow { 0% { stroke-dashoffset: 1000; } 100% { stroke-dashoffset: 0; } }
+@keyframes pulse-glow { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+@keyframes typing-cursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+.circuit-line { stroke-dasharray: 1000; animation: circuit-flow 20s linear infinite; }
+.circuit-node { animation: pulse-glow 3s ease-in-out infinite; }
 
-      .projects-grid,
-      .tools-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #1e1e32; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #0ea5e9; }
 
-      .hamburger {
-        display: flex;
-      }
+model-viewer { --progress-bar-color: #0ea5e9; --progress-bar-height: 4px; --poster-color: #0a0a0a; background-color: #0a0a0a; }
 
-      h1 {
-        font-size: 2.2rem;
-      }
-
-      h2 {
-        font-size: 1.9rem;
-      }
-
-      .hero {
-        padding: 9rem 0 3rem;
-      }
-
-      .certifications-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1rem;
-      }
-
-      .cert-card {
-        min-height: 220px;
-      }
-      
-      .modal-3d-content.fullscreen .close {
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-        font-size: 1.5rem;
-      }
-      
-      .loading-spinner {
-        width: 50px;
-        height: 50px;
-      }
-      
-      .loading-text {
-        font-size: 1rem;
-      }
-      
-      .project-card {
-        min-height: 400px;
-      }
-      
-      .tools {
-        padding: 2rem 0;
-      }
-      
-      .tools-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        max-width: 500px;
-      }
-      
-      .software-item {
-        padding: 1.2rem;
-      }
-      
-      .software-logo {
-        width: 55px;
-        height: 55px;
-        margin-right: 1.2rem;
-      }
-      
-      .software-name {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .tools-grid {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
-      }
-      
-      .software-item {
-        padding: 1rem;
-      }
-      
-      .software-logo {
-        width: 50px;
-        height: 50px;
-        margin-right: 1rem;
-      }
-      
-      .software-name {
-        font-size: 0.95rem;
-      }
-      
-      .software-category {
-        font-size: 0.8rem;
-      }
-
-      .certifications-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cert-card {
-        min-height: 200px;
-      }
-
-      .cert-content h3 {
-        font-size: 1rem;
-      }
-
-      .cert-meta {
-        gap: 0.5rem;
-      }
-
-      .cert-meta-item {
-        font-size: 0.8rem;
-      }
-    }
-  </style>
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+.line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+</style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar" aria-label="Main navigation">
-    <div class="container">
-      <div class="logo" role="heading" aria-level="1">Behnam Afrasiyabi</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#tools">Tools</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-      </ul>
-      <button class="hamburger" aria-expanded="false" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background:transparent;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      <a href="#home" class="text-lg sm:text-xl font-bold tracking-tight">
+        <span class="text-gradient">BA</span><span class="text-[#8b8ba3] font-light">.</span>
+      </a>
+      <div class="hidden md:flex items-center gap-1">
+        <a href="#home" class="relative px-4 py-2 text-sm font-medium text-[#8b8ba3] hover:text-[#f0f0f0] transition-colors duration-300 group">Home<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#0ea5e9] rounded-full transition-all duration-300 group-hover:w-1/2"></span></a>
+        <a href="#skills" class="relative px-4 py-2 text-sm font-medium text-[#8b8ba3] hover:text-[#f0f0f0] transition-colors duration-300 group">Tools<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#0ea5e9] rounded-full transition-all duration-300 group-hover:w-1/2"></span></a>
+        <a href="#projects" class="relative px-4 py-2 text-sm font-medium text-[#8b8ba3] hover:text-[#f0f0f0] transition-colors duration-300 group">Projects<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#0ea5e9] rounded-full transition-all duration-300 group-hover:w-1/2"></span></a>
+        <a href="#certifications" class="relative px-4 py-2 text-sm font-medium text-[#8b8ba3] hover:text-[#f0f0f0] transition-colors duration-300 group">Certifications<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#0ea5e9] rounded-full transition-all duration-300 group-hover:w-1/2"></span></a>
+        <a href="#contact" class="relative px-4 py-2 text-sm font-medium text-[#8b8ba3] hover:text-[#f0f0f0] transition-colors duration-300 group">Contact<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#0ea5e9] rounded-full transition-all duration-300 group-hover:w-1/2"></span></a>
+      </div>
+      <div class="hidden md:block">
+        <a href="#contact" class="inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-full bg-[#0ea5e9]/10 text-[#0ea5e9] border border-[#0ea5e9]/20 hover:bg-[#0ea5e9]/20 hover:border-[#0ea5e9]/40 transition-all duration-300">Get in Touch</a>
+      </div>
+      <button id="menuToggle" class="md:hidden p-2 rounded-lg text-[#f0f0f0] hover:bg-white/5 transition-colors" aria-label="Toggle menu">
+        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button>
     </div>
-  </nav>
+  </div>
+  <div id="mobileMenu" class="md:hidden overflow-hidden glass-light transition-all duration-300" style="max-height:0;opacity:0;">
+    <div class="px-4 py-4 space-y-1">
+      <a href="#home" class="mobile-link block px-4 py-3 rounded-lg text-sm font-medium text-[#8b8ba3] hover:text-[#f0f0f0] hover:bg-white/5 transition-all">Home</a>
+      <a href="#skills" class="mobile-link block px-4 py-3 rounded-lg text-sm font-medium text-[#8b8ba3] hover:text-[#f0f0f0] hover:bg-white/5 transition-all">Tools</a>
+      <a href="#projects" class="mobile-link block px-4 py-3 rounded-lg text-sm font-medium text-[#8b8ba3] hover:text-[#f0f0f0] hover:bg-white/5 transition-all">Projects</a>
+      <a href="#certifications" class="mobile-link block px-4 py-3 rounded-lg text-sm font-medium text-[#8b8ba3] hover:text-[#f0f0f0] hover:bg-white/5 transition-all">Certifications</a>
+      <a href="#contact" class="mobile-link block px-4 py-3 rounded-lg text-sm font-medium text-[#8b8ba3] hover:text-[#f0f0f0] hover:bg-white/5 transition-all">Contact</a>
+      <a href="#contact" class="mobile-link block px-4 py-3 rounded-lg text-sm font-semibold text-[#0ea5e9] bg-[#0ea5e9]/10 text-center mt-2">Get in Touch</a>
+    </div>
+  </div>
+</nav>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-image">
-          <img 
-            src="images/profile.png" 
-            alt="Behnam Afrasiyabi"
-            loading="lazy"
-            width="320" 
-            height="320"
-          />
-        </div>
-        <div class="hero-text">
-          <h1>Hello, I'm <span class="highlight">Behnam Afrasiyabi</span></h1>
-          <p>
-            I have always been interested in the design and development of embedded systems for various applications. During my university education, I built a system for managing home appliances using a cell phone with a smart home approach. After that, I designed a device for test and simulation of In-vehicle sensors, and I have been involved in a project to build a car tester and ECU troubleshooter.
-          </p>
-          <p>
-            After graduation, I started my career working in the field of manufacturing, production, and soldering of industrial boards. Currently, I am a member of the MAPNA Automation and Process Control System or MAPCS. MAPCS is the state of the art FCS/DCS system of MAPNA Electric & Control (MECO) Company. Design and development of Hardware for industrial devices and components such as Remote Terminal Units (RTUs) and various industrial I/O cards are some examples of projects I work on.
-          </p>
-          <div class="contact-info">
-            <div class="info-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              <span>b.afrasiyabi@gmail.com</span>
-            </div>
-            <div class="info-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              <span>+989365066966</span>
-            </div>
-            <div class="info-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-              <a href="https://linkedin.com/in/behnam-afrasiyabi" target="_blank" rel="noopener">linkedin.com/in/behnam-afrasiyabi</a>
-            </div>
+<!-- HERO -->
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Circuit Background -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image:linear-gradient(rgba(14,165,233,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,0.5) 1px, transparent 1px); background-size:60px 60px;"></div>
+    <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 300 Q200 280 400 320 T800 290" fill="none" stroke="rgba(14,165,233,0.08)" stroke-width="1" class="circuit-line"/>
+      <path d="M0 500 Q300 480 500 520 T900 490" fill="none" stroke="rgba(139,92,246,0.06)" stroke-width="1" class="circuit-line" style="animation-delay:-5s"/>
+      <path d="M100 0 Q150 200 120 400 T160 800" fill="none" stroke="rgba(6,182,212,0.06)" stroke-width="1" class="circuit-line" style="animation-delay:-10s"/>
+      <path d="M600 0 Q650 200 620 400 T660 900" fill="none" stroke="rgba(14,165,233,0.05)" stroke-width="1" class="circuit-line" style="animation-delay:-3s"/>
+      <circle cx="400" cy="320" r="2" fill="rgba(14,165,233,0.4)" class="circuit-node"/>
+      <circle cx="200" cy="290" r="2" fill="rgba(14,165,233,0.4)" class="circuit-node" style="animation-delay:-1s"/>
+      <circle cx="800" cy="290" r="2" fill="rgba(14,165,233,0.4)" class="circuit-node" style="animation-delay:-2s"/>
+      <circle cx="500" cy="520" r="2" fill="rgba(139,92,246,0.4)" class="circuit-node" style="animation-delay:-0.5s"/>
+      <circle cx="120" cy="400" r="2" fill="rgba(6,182,212,0.4)" class="circuit-node" style="animation-delay:-2.5s"/>
+    </svg>
+    <div class="absolute top-1/4 -left-32 w-64 h-64 bg-[#0ea5e9]/5 rounded-full blur-[100px]"></div>
+    <div class="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/3 rounded-full blur-[150px]"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+    <!-- Title -->
+    <h1 class="fade-up text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-10 sm:mb-14 text-center">
+      Hello, I'm <span class="text-gradient">Behnam Afrasiyabi</span>
+    </h1>
+
+    <!-- Profile Image + Text -->
+    <div class="fade-up flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 lg:gap-16 max-w-6xl mx-auto">
+      <!-- Profile Photo LEFT -->
+      <div class="flex-shrink-0">
+        <div class="relative group">
+          <div class="absolute -inset-1 bg-gradient-to-r from-[#0ea5e9]/30 via-purple-500/30 to-cyan-500/30 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative w-44 sm:w-52 lg:w-60 rounded-2xl overflow-hidden border border-white/10 glow-cyan" style="aspect-ratio:8/13;">
+            <img src="images/profile.png" alt="Behnam Afrasiyabi" class="w-full h-full object-cover" loading="eager" width="800" height="1312"/>
           </div>
+        </div>
+      </div>
+
+      <!-- Text RIGHT -->
+      <div class="flex-1 text-center md:text-left">
+        <!-- Typing Role -->
+        <div class="mb-5">
+          <h2 class="text-xl sm:text-2xl md:text-3xl font-light text-[#8b8ba3]">
+            <span class="text-[#0ea5e9]/80">&lt;</span>
+            <span class="font-mono text-[#f0f0f0]" id="typingText"></span>
+            <span class="inline-block w-[3px] h-6 md:h-7 bg-[#0ea5e9] ml-1 align-middle" style="animation:typing-cursor 1s step-end infinite;"></span>
+            <span class="text-[#0ea5e9]/80">/&gt;</span>
+          </h2>
+        </div>
+
+        <!-- Bio -->
+        <div class="space-y-4 mb-6">
+          <p class="text-base sm:text-lg text-[#8b8ba3] leading-relaxed">I design complex, production-ready electronic hardware — from schematic capture through multi-layer PCB layout to a fully manufactured board. My experience spans industrial automation systems, automotive testing platforms, and high-speed digital designs where reliability and precision are non-negotiable.</p>
+          <p class="text-base sm:text-lg text-[#8b8ba3] leading-relaxed">Every board I deliver is designed to meet EMC standards, optimized for signal integrity, and ready for volume production — not just a prototype that works in the lab.</p>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="flex flex-col gap-2.5 mb-7">
+          <div class="flex items-center gap-3 text-[#8b8ba3] text-sm sm:text-base justify-center md:justify-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>b.afrasiyabi@gmail.com</span>
+          </div>
+          <div class="flex items-center gap-3 text-[#8b8ba3] text-sm sm:text-base justify-center md:justify-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>+98 936 506 6966</span>
+          </div>
+          <div class="flex items-center gap-3 text-[#8b8ba3] text-sm sm:text-base justify-center md:justify-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            <a href="https://linkedin.com/in/behnam-afrasiyabi" target="_blank" rel="noopener noreferrer" class="text-[#8b8ba3] hover:text-[#0ea5e9] transition-colors duration-300">linkedin.com/in/behnam-afrasiyabi</a>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+          <a href="#projects" class="group relative inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold rounded-full bg-[#0ea5e9] text-white overflow-hidden transition-all duration-300 hover:scale-105">
+            <span class="relative z-10">View My Work</span>
+            <span class="absolute inset-0 bg-gradient-to-r from-[#0ea5e9] via-cyan-400 to-[#0ea5e9] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+            <span class="relative z-10">→</span>
+          </a>
+          <a href="#contact" class="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold rounded-full border border-white/10 text-[#f0f0f0] hover:border-[#0ea5e9]/40 hover:bg-[#0ea5e9]/5 transition-all duration-300">Contact Me</a>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Tools & Software Section -->
-  <section id="tools" class="tools">
-    <div class="container">
-      <h2><span class="highlight">Tools</span> & Software</h2>
-      <div class="tools-grid">
-        <div class="software-item">
-          <div class="software-logo">
-            <img src="images/Logo/logo_altium.png" alt="Altium Designer" loading="lazy" width="60" height="60">
-          </div>
-          <div class="software-info">
-            <span class="software-name">Altium Designer</span>
-            <span class="software-category">PCB Design</span>
-          </div>
-        </div>
-        
-        <div class="software-item">
-          <div class="software-logo">
-            <img src="images/Logo/logo_pspice.png" alt="PSpice" loading="lazy" width="60" height="60">
-          </div>
-          <div class="software-info">
-            <span class="software-name">PSpice</span>
-            <span class="software-category">Circuit Simulation</span>
-          </div>
-        </div>
-        
-        <div class="software-item">
-          <div class="software-logo">
-            <img src="images/Logo/logo_python.png" alt="Python" loading="lazy" width="60" height="60">
-          </div>
-          <div class="software-info">
-            <span class="software-name">Python</span>
-            <span class="software-category">Programming</span>
-          </div>
-        </div>
-        
-        <div class="software-item">
-          <div class="software-logo">
-            <img src="images/Logo/logo_solidworks.png" alt="SolidWorks" loading="lazy" width="60" height="60">
-          </div>
-          <div class="software-info">
-            <span class="software-name">SolidWorks</span>
-            <span class="software-category">3D CAD</span>
-          </div>
-        </div>
-        
-        <div class="software-item">
-          <div class="software-logo">
-            <img src="images/Logo/logo_ltspice.png" alt="LTSpice" loading="lazy" width="60" height="60">
-          </div>
-          <div class="software-info">
-            <span class="software-name">LTSpice</span>
-            <span class="software-category">Circuit Simulation</span>
-          </div>
-        </div>
-        
-        <div class="software-item">
-          <div class="software-logo">
-            <img src="images/Logo/logo_c.png" alt="C Programming" loading="lazy" width="60" height="60">
-          </div>
-          <div class="software-info">
-            <span class="software-name">C</span>
-            <span class="software-category">Programming</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="projects">
-    <div class="container">
-      <h2><span class="highlight">My</span> Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-image">
-            <img 
-              class="project-image-trigger" 
-              src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=T-Sim200V3" 
-              alt="T-Sim200V3"
-              loading="lazy"
-              width="600"
-              height="400"
-            />
-          </div>
-          <div class="project-content">
-            <h3>T-Sim200V3</h3>
-            <p>Design and develop T-Sim200V3</p>
-            <div class="button-container">
-              <button class="view-3d-btn" data-model="models/T-Sim200V3.glb">View 3D Model</button>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">
-            <img 
-              class="project-image-trigger" 
-              src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=IoT+Modules" 
-              alt="IoT Modules"
-              loading="lazy"
-              width="600"
-              height="400"
-            />
-          </div>
-          <div class="project-content">
-            <h3>IoT Communication Modules</h3>
-            <p>Integrated Zigbee, LoRa, and GSM modules into industrial hardware for remote monitoring and data acquisition.</p>
-            <div class="button-container">
-              <button class="view-3d-btn" data-model="models/iot-modules.glb">View 3D Model</button>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">
-            <img 
-              class="project-image-trigger" 
-              src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=Sensor+Tester" 
-              alt="Sensor Tester"
-              loading="lazy"
-              width="600"
-              height="400"
-            />
-          </div>
-          <div class="project-content">
-            <h3>Automotive Sensor Tester</h3>
-            <p>Designed a simulation and test platform for in-vehicle sensors to support diagnostics and reverse engineering.</p>
-            <div class="button-container">
-              <button class="view-3d-btn" data-model="models/sensor-tester.glb">View 3D Model</button>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">
-            <img 
-              class="project-image-trigger" 
-              src="https://placehold.co/600x400/1a1a1a/FFFFFF?text=Smart+Home" 
-              alt="Smart Home"
-              loading="lazy"
-              width="600"
-              height="400"
-            />
-          </div>
-          <div class="project-content">
-            <h3>Smart Home Control System</h3>
-            <p>University project for remote control of home appliances via mobile phone using embedded microcontroller.</p>
-            <div class="button-container">
-              <button class="view-3d-btn" data-model="models/smart-home.glb">View 3D Model</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Certifications Section -->
-  <section id="certifications" class="certifications-section">
-    <div class="container">
-      <h2><span class="highlight">Certifications</span></h2>
-      <div class="certifications-wrapper">
-        <div class="certifications-grid">
-          <!-- Altium Designer Certificate -->
-          <div class="cert-card" onclick="window.open('images/Certifications/Altium.pdf', '_blank')">
-            <div class="cert-content">
-              <h3>Altium Designer Professional</h3>
-              <div class="cert-details">
-                Advanced PCB design, multi-layer layouts, and high-speed digital circuit implementation
-              </div>
-              <div class="cert-meta">
-                <div class="cert-meta-item">
-                  <i class="fas fa-star"></i>
-                  <span>Score: 95%</span>
-                </div>
-                <div class="cert-meta-item">
-                  <i class="fas fa-clock"></i>
-                  <span>30 hours</span>
-                </div>
-              </div>
-              <a href="images/Certifications/Altium.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
-                <i class="fas fa-file-pdf"></i>
-                View Certificate
-              </a>
-            </div>
-          </div>
-
-          <!-- PCB High Speed Protocol -->
-          <div class="cert-card" onclick="window.open('images/Certifications/PCB_HIGH.pdf', '_blank')">
-            <div class="cert-content">
-              <h3>High-Speed PCB Design</h3>
-              <div class="cert-details">
-                Signal integrity, impedance control, and routing techniques for high-speed digital interfaces
-              </div>
-              <a href="images/Certifications/PCB_HIGH.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
-                <i class="fas fa-file-pdf"></i>
-                View Certificate
-              </a>
-            </div>
-          </div>
-
-          <!-- High Frequency PCB Design -->
-          <div class="cert-card" onclick="window.open('images/Certifications/PCB_HIGH_F.pdf', '_blank')">
-            <div class="cert-content">
-              <h3>RF & High-Frequency PCB Design</h3>
-              <div class="cert-details">
-                RF circuit design, transmission lines, and electromagnetic optimization for wireless applications
-              </div>
-              <a href="images/Certifications/PCB_HIGH_F.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
-                <i class="fas fa-file-pdf"></i>
-                View Certificate
-              </a>
-            </div>
-          </div>
-
-          <!-- PCB Fundamentals -->
-          <div class="cert-card" onclick="window.open('images/Certifications/PCB.pdf', '_blank')">
-            <div class="cert-content">
-              <h3>PCB Materials & Stack-up</h3>
-              <div class="cert-details">
-                Material selection, layer stack-up design, and manufacturing considerations by Sierra Circuits
-              </div>
-              <a href="images/Certifications/PCB.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
-                <i class="fas fa-file-pdf"></i>
-                View Certificate
-              </a>
-            </div>
-          </div>
-
-          <!-- EMC Certificates -->
-          <div class="cert-card" onclick="window.open('images/Certifications/EMC1.pdf', '_blank')">
-            <div class="cert-content">
-              <h3>EMC Fundamentals</h3>
-              <div class="cert-details">
-                Electromagnetic compatibility principles, interference sources, and basic mitigation strategies
-              </div>
-              <a href="images/Certifications/EMC1.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
-                <i class="fas fa-file-pdf"></i>
-                View Certificate
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-card" onclick="window.open('images/Certifications/EMC2.pdf', '_blank')">
-            <div class="cert-content">
-              <h3>EMC Testing & Standards</h3>
-              <div class="cert-details">
-                Compliance testing methodologies, international standards, and certification requirements
-              </div>
-              <a href="images/Certifications/EMC2.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
-                <i class="fas fa-file-pdf"></i>
-                View Certificate
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-card" onclick="window.open('images/Certifications/EMC3.pdf', '_blank')">
-            <div class="cert-content">
-              <h3>EMC Design Principles</h3>
-              <div class="cert-details">
-                PCB layout techniques, shielding, filtering, and grounding for electromagnetic compatibility
-              </div>
-              <a href="images/Certifications/EMC3.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
-                <i class="fas fa-file-pdf"></i>
-                View Certificate
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-card" onclick="window.open('images/Certifications/EMC4.pdf', '_blank')">
-            <div class="cert-content">
-              <h3>Advanced EMC Implementation</h3>
-              <div class="cert-details">
-                Practical EMC solutions for complex systems, troubleshooting, and performance optimization
-              </div>
-              <a href="images/Certifications/EMC4.pdf" class="pdf-link" target="_blank" onclick="event.stopPropagation()">
-                <i class="fas fa-file-pdf"></i>
-                View Certificate
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3D Viewer Modal -->
-  <div id="3dModal" class="modal">
-    <div class="modal-3d-content fullscreen">
-      <span class="close" aria-label="Close 3D viewer">&times;</span>
-      <div id="modelContainer" style="width: 100%; height: 100vh;">
-        <div class="loading-container">
-          <div class="loading-spinner"></div>
-          <div class="loading-text">Loading 3D Model<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></div>
-        </div>
-      </div>
+    <!-- Stats -->
+    <div class="fade-up mt-10 sm:mt-14 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-7 max-w-3xl mx-auto px-4">
+      <div class="text-center group"><div class="text-2xl sm:text-3xl font-bold text-gradient group-hover:scale-110 transition-transform duration-300">8+</div><div class="text-xs sm:text-sm text-[#8b8ba3] mt-1">Certifications</div></div>
+      <div class="text-center group"><div class="text-2xl sm:text-3xl font-bold text-gradient group-hover:scale-110 transition-transform duration-300">4+</div><div class="text-xs sm:text-sm text-[#8b8ba3] mt-1">Projects</div></div>
+      <div class="text-center group"><div class="text-2xl sm:text-3xl font-bold text-gradient group-hover:scale-110 transition-transform duration-300">6+</div><div class="text-xs sm:text-sm text-[#8b8ba3] mt-1">Tools & Software</div></div>
+      <div class="text-center group"><div class="text-2xl sm:text-3xl font-bold text-gradient group-hover:scale-110 transition-transform duration-300">5+</div><div class="text-xs sm:text-sm text-[#8b8ba3] mt-1">Years Experience</div></div>
     </div>
   </div>
 
-  <!-- Image Modal -->
-  <div id="imageModal" class="modal">
-    <div class="modal-content">
-      <span class="close" aria-label="Close image viewer">&times;</span>
-      <img id="modalImage" src="" alt="Preview">
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2" style="animation:float-y 2s ease-in-out infinite;">
+    <a href="#skills" class="flex flex-col items-center gap-2 text-[#8b8ba3] hover:text-[#0ea5e9] transition-colors">
+      <span class="text-xs font-medium tracking-widest uppercase">Scroll</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- TOOLS & SOFTWARE -->
+<section id="skills" class="relative py-14 sm:py-20">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fade-up text-center mb-10 sm:mb-14">
+      <span class="text-[#0ea5e9] text-sm font-medium tracking-widest uppercase mb-4 block">Tools & Software</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Tools & <span class="text-gradient">Software</span></h2>
+      <p class="max-w-2xl mx-auto mt-4 text-[#8b8ba3] text-base sm:text-lg leading-relaxed">The professional tools I use daily to bring designs to life</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4" id="toolsGrid"></div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<section id="projects" class="relative py-14 sm:py-20">
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/[0.02] to-transparent pointer-events-none"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fade-up text-center mb-10 sm:mb-14">
+      <span class="text-[#0ea5e9] text-sm font-medium tracking-widest uppercase mb-4 block">Portfolio</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Featured <span class="text-gradient">Projects</span></h2>
+      <p class="max-w-2xl mx-auto mt-4 text-[#8b8ba3] text-base sm:text-lg leading-relaxed">A selection of key projects spanning industrial automation, IoT, automotive, and embedded systems design. Click to view 3D models.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8" id="projectsGrid"></div>
+  </div>
+</section>
+
+<!-- 3D Model Viewer Modal -->
+<div id="modelModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex-col hidden" onclick="if(event.target===this)closeModel()">
+  <div class="flex items-center justify-between px-4 sm:px-6 py-4 z-10 relative">
+    <div class="flex items-center gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      <span class="text-sm font-medium text-[#f0f0f0]">3D Model Viewer</span>
+    </div>
+    <button onclick="closeModel()" class="p-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-[#f0f0f0] transition-all duration-300 hover:scale-105" aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+  <div class="flex-1 relative" id="modelContainer">
+    <div id="modelLoader" class="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
+      <div class="w-14 h-14 border-4 border-[#0ea5e9]/30 border-t-[#0ea5e9] rounded-full mb-4" style="animation:spin 1s linear infinite;"></div>
+      <p class="text-[#0ea5e9] font-semibold text-lg">Loading 3D Model<span class="inline-flex ml-1"><span class="animate-pulse">.</span><span class="animate-pulse" style="animation-delay:0.2s">.</span><span class="animate-pulse" style="animation-delay:0.4s">.</span></span></p>
     </div>
   </div>
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full glass border border-white/10 text-[#8b8ba3] text-xs sm:text-sm z-10">Drag to rotate · Scroll to zoom · Right-click to pan</div>
+</div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Behnam Afrasiyabi. All rights reserved.</p>
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="relative py-14 sm:py-20">
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0ea5e9]/[0.015] to-transparent pointer-events-none"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fade-up text-center mb-10 sm:mb-14">
+      <span class="text-[#0ea5e9] text-sm font-medium tracking-widest uppercase mb-4 block">Credentials</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Certifications & <span class="text-gradient">Training</span></h2>
+      <p class="max-w-2xl mx-auto mt-4 text-[#8b8ba3] text-base sm:text-lg leading-relaxed">Continuous learning and professional certifications across PCB design, signal integrity, and electromagnetic compatibility. Click to view each certificate.</p>
     </div>
-  </footer>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6" id="certsGrid"></div>
+  </div>
+</section>
 
-  <script>
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        document.body.classList.add('scrolled');
-      } else {
-        document.body.classList.remove('scrolled');
-      }
-    });
+<!-- PDF Modal -->
+<div id="pdfModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex-col hidden">
+  <div class="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-white/10">
+    <div class="flex items-center gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+      <span class="text-sm font-medium text-[#f0f0f0]">Certificate</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <a id="pdfDownload" href="#" download onclick="event.stopPropagation()" class="flex items-center gap-2 px-4 py-2 text-sm rounded-full bg-white/5 border border-white/10 text-[#f0f0f0] hover:bg-white/10 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        Download
+      </a>
+      <button onclick="closePdf()" class="p-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-[#f0f0f0] transition-all duration-300 hover:scale-105" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="flex-1 relative">
+    <iframe id="pdfFrame" class="w-full h-full border-0" title="Certificate PDF"></iframe>
+  </div>
+</div>
 
-    // DOM Ready
-    document.addEventListener('DOMContentLoaded', () => {
-      // Mobile Menu Toggle
-      const hamburger = document.querySelector('.hamburger');
-      const navLinks = document.querySelector('.nav-links');
+<!-- CONTACT -->
+<section id="contact" class="relative py-14 sm:py-20">
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/[0.02] to-transparent pointer-events-none"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fade-up text-center mb-10 sm:mb-14">
+      <span class="text-[#0ea5e9] text-sm font-medium tracking-widest uppercase mb-4 block">Get in Touch</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Let's Build <span class="text-gradient">Your Hardware</span></h2>
+      <p class="max-w-2xl mx-auto mt-4 text-[#8b8ba3] text-base sm:text-lg leading-relaxed">Looking for someone who can design a board that actually works — not just on paper, but on the production line and in the field? Let's talk.</p>
+    </div>
 
-      if (hamburger && navLinks) {
-        hamburger.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-          hamburger.classList.toggle('active');
-          hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
-        });
-      }
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-5xl mx-auto">
+      <!-- Contact Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5" id="contactCards"></div>
 
-      // Close mobile menu when clicking on a link
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-          if (navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-          }
-        });
-      });
-
-      // Smooth Scrolling
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href');
-          if (targetId === '#') return;
-          
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            const offsetTop = targetElement.offsetTop - 80;
-            window.scrollTo({
-              top: offsetTop,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-
-      // Image Modal
-      const imageModal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImage');
-      const imageCloseBtn = imageModal.querySelector('.close');
-
-      document.querySelectorAll('.project-image-trigger').forEach(img => {
-        img.addEventListener('click', () => {
-          modalImg.src = img.src;
-          modalImg.alt = img.alt;
-          imageModal.style.display = 'block';
-          document.body.style.overflow = 'hidden';
-        });
-      });
-
-      if (imageCloseBtn) {
-        imageCloseBtn.onclick = () => {
-          imageModal.style.display = 'none';
-          document.body.style.overflow = 'auto';
-        };
-      }
-
-      // 3D Viewer Modal
-      const modal3d = document.getElementById('3dModal');
-      const close3dBtn = modal3d.querySelector('.close');
-
-      document.querySelectorAll('.view-3d-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const modelPath = btn.getAttribute('data-model');
-          open3DViewer(modelPath);
-        });
-      });
-
-      if (close3dBtn) {
-        close3dBtn.onclick = () => {
-          modal3d.style.display = 'none';
-          document.body.style.overflow = 'auto';
-          clearModelViewer();
-        };
-      }
-
-      // Modal close events
-      setupModalEvents();
-      
-      // Start observing for lazy loading
-      const projectsSection = document.querySelector('.projects');
-      if (projectsSection) {
-        modelObserver.observe(projectsSection);
-      }
-    });
-
-    // Setup modal close events
-    function setupModalEvents() {
-      const imageModal = document.getElementById('imageModal');
-      const modal3d = document.getElementById('3dModal');
-
-      window.addEventListener('click', (event) => {
-        if (event.target === imageModal) {
-          imageModal.style.display = 'none';
-          document.body.style.overflow = 'auto';
-        }
-        if (event.target === modal3d) {
-          modal3d.style.display = 'none';
-          document.body.style.overflow = 'auto';
-          clearModelViewer();
-        }
-      });
-
-      // Close modals with Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          imageModal.style.display = 'none';
-          modal3d.style.display = 'none';
-          document.body.style.overflow = 'auto';
-          clearModelViewer();
-        }
-      });
-    }
-
-    // Open 3D Viewer with model-viewer component
-    function open3DViewer(modelPath) {
-      const modal3d = document.getElementById('3dModal');
-      const modelContainer = document.getElementById('modelContainer');
-      
-      // Show modal
-      modal3d.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-      
-      // Create model-viewer element after a short delay to ensure DOM is ready
-      setTimeout(() => {
-        modelContainer.innerHTML = `
-          <model-viewer 
-            src="${modelPath}"
-            alt="3D Model"
-            ar
-            environment-image="neutral"
-            poster=""
-            shadow-intensity="1"
-            camera-controls
-            touch-action="pan-y"
-            auto-rotate
-            camera-orbit="45deg 55deg 2.5m"
-            style="width: 100%; height: 100%;"
-          >
-            <div class="progress-bar hide" slot="progress-bar">
-              <div class="update-bar"></div>
-            </div>
-          </model-viewer>
-        `;
-        
-        // Add event listener to hide loading when model is loaded
-        const modelViewer = modelContainer.querySelector('model-viewer');
-        modelViewer.addEventListener('load', () => {
-          // Model is loaded, we could add any post-load actions here if needed
-        });
-      }, 100);
-    }
-
-    // Clear model viewer
-    function clearModelViewer() {
-      const modelContainer = document.getElementById('modelContainer');
-      modelContainer.innerHTML = `
-        <div class="loading-container">
-          <div class="loading-spinner"></div>
-          <div class="loading-text">Loading 3D Model<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></div>
+      <!-- CTA Card -->
+      <div class="fade-up glass rounded-2xl p-6 sm:p-8 glow-cyan flex flex-col justify-center">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-2.5 rounded-xl bg-[#0ea5e9]/10 text-[#0ea5e9]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold text-[#f0f0f0]">Have a Challenging Hardware Project?</h3>
         </div>
-      `;
-    }
+        <p class="text-[#8b8ba3] text-sm sm:text-base leading-relaxed mb-6">From multi-layer high-speed boards to full industrial control systems — if it involves serious hardware design, I can handle it. I take on projects that demand precision, EMC compliance, and production-level quality.</p>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 rounded-full bg-[#0ea5e9] mt-2 flex-shrink-0"></div>
+            <p class="text-sm text-[#8b8ba3]"><span class="text-[#f0f0f0] font-medium">Multi-layer PCB design</span> — High-speed, RF, and impedance-controlled layouts</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
+            <p class="text-sm text-[#8b8ba3]"><span class="text-[#f0f0f0] font-medium">Industrial hardware</span> — RTU, I/O cards, FCS/DCS subsystems</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 rounded-full bg-cyan-500 mt-2 flex-shrink-0"></div>
+            <p class="text-sm text-[#8b8ba3]"><span class="text-[#f0f0f0] font-medium">EMC compliance & signal integrity</span> — Designed to pass standards, not just prototype</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 rounded-full bg-amber-500 mt-2 flex-shrink-0"></div>
+            <p class="text-sm text-[#8b8ba3]"><span class="text-[#f0f0f0] font-medium">Full product cycle</span> — Schematic to production-ready manufactured board</p>
+          </div>
+        </div>
+        <a href="mailto:b.afrasiyabi@gmail.com" class="mt-8 inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-full bg-[#0ea5e9] text-white transition-all duration-300 hover:bg-[#0ea5e9]/90 group">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Send an Email <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // Lazy loading for models
-    const modelObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Preload models when projects section is in view
-          preloadModels();
-          modelObserver.disconnect();
-        }
-      });
-    });
+<!-- BACK TO TOP -->
+<button id="backToTop" class="fixed bottom-6 right-6 z-40 p-3 rounded-full glass border border-white/10 text-[#0ea5e9] hover:bg-[#0ea5e9]/10 transition-all duration-300 shadow-lg opacity-0 scale-75 pointer-events-none" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
 
-    // Preload models for better performance
-    function preloadModels() {
-      const models = [
-        'models/T-Sim200V3.glb',
-        'models/iot-modules.glb',
-        'models/sensor-tester.glb',
-        'models/smart-home.glb'
-      ];
-      
-      models.forEach(modelPath => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'fetch';
-        link.href = modelPath;
-        document.head.appendChild(link);
-      });
+<script>
+// ==================== DATA ====================
+const tools = [
+  { name: 'Altium Designer', category: 'PCB Design', logo: 'images/Logo/logo_altium.png' },
+  { name: 'PSpice', category: 'Simulation', logo: 'images/Logo/logo_pspice.png' },
+  { name: 'Python', category: 'Programming', logo: 'images/Logo/logo_python.png' },
+  { name: 'SolidWorks', category: '3D CAD', logo: 'images/Logo/logo_solidworks.png' },
+  { name: 'LTSpice', category: 'Simulation', logo: 'images/Logo/logo_ltspice.png' },
+  { name: 'C', category: 'Programming', logo: 'images/Logo/logo_c.png' }
+];
+
+const projects = [
+  { title: 'T-Sim200V3', description: 'Complete design and development of T-Sim200V3 — an industrial test and simulation platform for automotive electronic control units.', image: 'images/projects/tsim200v3.png', model: 'models/T-Sim200V3.glb', tags: ['PCB Design', 'Industrial', 'Testing', 'RTU'], color: '#0ea5e9' },
+  { title: 'IoT Communication Modules', description: 'Integrated Zigbee, LoRa, and GSM modules into industrial hardware for remote monitoring and data acquisition systems.', image: 'images/projects/iot-modules.png', model: 'models/iot-modules.glb', tags: ['IoT', 'Wireless', 'Zigbee', 'LoRa', 'GSM'], color: '#8b5cf6' },
+  { title: 'Automotive Sensor Tester', description: 'Designed a simulation and test platform for in-vehicle sensors to support diagnostics, ECU troubleshooting, and reverse engineering.', image: 'images/projects/sensor-tester.png', model: 'models/sensor-tester.glb', tags: ['Automotive', 'Diagnostics', 'Sensors', 'Testing'], color: '#06b6d4' },
+  { title: 'Smart Home Control System', description: 'University project for remote control of home appliances via mobile phone using embedded microcontroller with smart home approach.', image: 'images/projects/smart-home.png', model: 'models/smart-home.glb', tags: ['Embedded', 'Smart Home', 'IoT', 'Microcontroller'], color: '#f59e0b' }
+];
+
+const certifications = [
+  { title: 'Altium Designer Professional', description: 'Advanced PCB design, multi-layer layouts, and high-speed digital circuit implementation', issuer: 'Altium', score: '95%', hours: '30 hours', color: '#0ea5e9', file: 'images/Certifications/Altium.pdf' },
+  { title: 'High-Speed PCB Design', description: 'Signal integrity, impedance control, and routing techniques for high-speed digital interfaces', issuer: 'PCB Design Certification', color: '#8b5cf6', file: 'images/Certifications/PCB_HIGH.pdf' },
+  { title: 'RF & High-Frequency PCB Design', description: 'RF circuit design, transmission lines, and electromagnetic optimization for wireless applications', issuer: 'PCB Design Certification', color: '#06b6d4', file: 'images/Certifications/PCB_HIGH_F.pdf' },
+  { title: 'PCB Materials & Stack-up', description: 'Material selection, layer stack-up design, and manufacturing considerations by Sierra Circuits', issuer: 'Sierra Circuits', color: '#f59e0b', file: 'images/Certifications/PCB.pdf' },
+  { title: 'EMC Fundamentals', description: 'Electromagnetic compatibility principles, interference sources, and basic mitigation strategies', issuer: 'EMC Certification', color: '#10b981', file: 'images/Certifications/EMC1.pdf' },
+  { title: 'EMC Testing & Standards', description: 'Compliance testing methodologies, international standards, and certification requirements', issuer: 'EMC Certification', color: '#10b981', file: 'images/Certifications/EMC2.pdf' },
+  { title: 'EMC Design Principles', description: 'PCB layout techniques, shielding, filtering, and grounding for electromagnetic compatibility', issuer: 'EMC Certification', color: '#10b981', file: 'images/Certifications/EMC3.pdf' },
+  { title: 'Advanced EMC Implementation', description: 'Practical EMC solutions for complex systems, troubleshooting, and performance optimization', issuer: 'EMC Certification', color: '#10b981', file: 'images/Certifications/EMC4.pdf' }
+];
+
+const contactMethods = [
+  { label: 'Email', value: 'b.afrasiyabi@gmail.com', href: 'mailto:b.afrasiyabi@gmail.com', color: '#0ea5e9', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>' },
+  { label: 'Phone', value: '+98 936 506 6966', href: 'tel:+989365066966', color: '#10b981', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>' },
+  { label: 'LinkedIn', value: 'behnam-afrasiyabi', href: 'https://linkedin.com/in/behnam-afrasiyabi', color: '#8b5cf6', target: true, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>' },
+  { label: 'Location', value: 'Iran', href: '#', color: '#f59e0b', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>' }
+];
+
+const roles = ['Electronic Design Engineer', 'PCB Design Specialist', 'Hardware Design Engineer', 'Industrial Automation Specialist', 'EMC/EMI Compliance Expert'];
+
+// ==================== RENDER FUNCTIONS ====================
+
+function renderTools() {
+  const grid = document.getElementById('toolsGrid');
+  grid.innerHTML = tools.map((tool, i) => `
+    <div class="fade-up glass rounded-xl p-4 text-center glow-border cursor-default transition-all duration-300 hover:scale-105 hover:-translate-y-1" style="transition-delay:${i * 0.08}s">
+      <div class="w-10 h-10 rounded-lg mx-auto mb-3 flex items-center justify-center overflow-hidden">
+        <img src="${tool.logo}" alt="${tool.name}" class="w-10 h-10 object-contain p-1" onerror="this.parentElement.innerHTML='<span style=&quot;color:#0ea5e9;font-weight:700;font-size:14px&quot;>${tool.name.substring(0,2)}</span>'" loading="lazy"/>
+      </div>
+      <h4 class="text-sm font-semibold text-[#f0f0f0]">${tool.name}</h4>
+      <p class="text-xs text-[#8b8ba3] mt-1">${tool.category}</p>
+    </div>
+  `).join('');
+}
+
+function renderProjects() {
+  const grid = document.getElementById('projectsGrid');
+  const layersIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22.54 12.43-1.42-.65-8.58 3.91a2 2 0 0 1-1.66 0l-8.58-3.9-1.42.64a1 1 0 0 0 0 1.84l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.85Z"/><path d="m22.54 16.43-1.42-.65-8.58 3.91a2 2 0 0 1-1.66 0l-8.58-3.9-1.42.64a1 1 0 0 0 0 1.84l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.85Z"/></svg>';
+  const rotateIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>';
+
+  grid.innerHTML = projects.map((p, i) => `
+    <div class="fade-up group glass rounded-2xl overflow-hidden glow-border cursor-pointer transition-all duration-300 hover:-translate-y-1.5" style="transition-delay:${i * 0.15}s" onclick="openModel('${p.model}')">
+      <div class="relative h-48 sm:h-56 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/30 to-transparent z-10"></div>
+        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" width="600" height="400"/>
+        <div class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div class="flex items-center gap-2 px-5 py-2.5 rounded-full glass border border-white/20 text-white text-sm font-medium">${rotateIcon} View 3D Model</div>
+        </div>
+      </div>
+      <div class="p-5 sm:p-6">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <h3 class="text-lg sm:text-xl font-semibold text-[#f0f0f0] group-hover:text-[#0ea5e9] transition-colors duration-300">${p.title}</h3>
+          <div class="flex-shrink-0 p-2 rounded-lg" style="background-color:${p.color}15;color:${p.color}">${layersIcon}</div>
+        </div>
+        <p class="text-sm text-[#8b8ba3] leading-relaxed mb-4 line-clamp-3">${p.description}</p>
+        <div class="flex flex-wrap gap-2">${p.tags.map(t => `<span class="text-xs px-2.5 py-1 rounded-full bg-white/5 text-[#8b8ba3] border border-white/5">${t}</span>`).join('')}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderCerts() {
+  const grid = document.getElementById('certsGrid');
+  const awardIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>';
+  const starIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+  const clockIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+  const fileIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>';
+
+  grid.innerHTML = certifications.map((c, i) => `
+    <div class="fade-up group glass rounded-2xl overflow-hidden glow-border flex flex-col cursor-pointer transition-all duration-300 hover:-translate-y-1.5" style="transition-delay:${i * 0.08}s" onclick="openPdf('${c.file}')">
+      <div class="h-1 w-full" style="background:linear-gradient(90deg,${c.color},${c.color}66)"></div>
+      <div class="p-5 sm:p-6 flex flex-col flex-1">
+        <div class="flex items-start justify-between mb-4">
+          <div class="p-2.5 rounded-xl" style="background-color:${c.color}15;color:${c.color}">${awardIcon}</div>
+          ${c.score ? `<div class="flex items-center gap-1 text-xs font-medium text-[#0ea5e9] bg-[#0ea5e9]/10 px-2.5 py-1 rounded-full">${starIcon} ${c.score}</div>` : ''}
+        </div>
+        <h3 class="text-base font-semibold text-[#f0f0f0] mb-2 leading-tight">${c.title}</h3>
+        <p class="text-sm text-[#8b8ba3] leading-relaxed mb-4 flex-1 line-clamp-3">${c.description}</p>
+        <div class="flex items-center justify-between pt-3 border-t border-white/5">
+          <span class="text-xs text-[#8b8ba3]">${c.issuer}</span>
+          ${c.hours ? `<div class="flex items-center gap-1 text-xs text-[#8b8ba3]">${clockIcon} ${c.hours}</div>` : ''}
+        </div>
+        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-[#0ea5e9]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">${fileIcon} View Certificate</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderContactCards() {
+  const container = document.getElementById('contactCards');
+  container.innerHTML = contactMethods.map((m, i) => `
+    <a href="${m.href}" ${m.target ? 'target="_blank" rel="noopener noreferrer"' : ''} class="fade-up glass rounded-2xl p-5 sm:p-6 glow-border flex flex-col items-center text-center group transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]" style="transition-delay:${i * 0.1}s">
+      <div class="p-3 rounded-xl mb-4 transition-transform duration-300 group-hover:scale-110" style="background-color:${m.color}15;color:${m.color}">${m.icon}</div>
+      <h3 class="text-sm font-semibold text-[#f0f0f0] mb-1">${m.label}</h3>
+      <p class="text-xs sm:text-sm text-[#8b8ba3] break-all">${m.value}</p>
+    </a>
+  `).join('');
+}
+
+// ==================== TYPING EFFECT ====================
+let roleIndex = 0, displayText = '', isDeleting = false;
+const typingEl = document.getElementById('typingText');
+
+function typeEffect() {
+  const currentRole = roles[roleIndex];
+  const speed = isDeleting ? 40 : 80;
+  if (!isDeleting) {
+    displayText = currentRole.substring(0, displayText.length + 1);
+    typingEl.textContent = displayText;
+    if (displayText === currentRole) {
+      setTimeout(() => { isDeleting = true; typeEffect(); }, 2000);
+      return;
     }
-  </script>
+  } else {
+    displayText = currentRole.substring(0, displayText.length - 1);
+    typingEl.textContent = displayText;
+    if (displayText === '') {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+    }
+  }
+  setTimeout(typeEffect, speed);
+}
+
+// ==================== MODALS ====================
+function openModel(modelPath) {
+  const modal = document.getElementById('modelModal');
+  const container = document.getElementById('modelContainer');
+  const loader = document.getElementById('modelLoader');
+  modal.classList.remove('hidden');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  loader.style.display = 'flex';
+
+  // Remove old model
+  const old = container.querySelector('model-viewer');
+  if (old) old.remove();
+
+  setTimeout(() => {
+    const mv = document.createElement('model-viewer');
+    mv.setAttribute('src', modelPath);
+    mv.setAttribute('alt', '3D Model');
+    mv.setAttribute('auto-rotate', '');
+    mv.setAttribute('camera-controls', '');
+    mv.setAttribute('touch-action', 'pan-y');
+    mv.setAttribute('shadow-intensity', '1');
+    mv.setAttribute('camera-orbit', '45deg 55deg 2.5m');
+    mv.setAttribute('environment-image', 'neutral');
+    mv.setAttribute('exposure', '1');
+    mv.style.width = '100%';
+    mv.style.height = '100%';
+    mv.style.backgroundColor = '#0a0a0a';
+    mv.addEventListener('load', () => { loader.style.display = 'none'; });
+    container.appendChild(mv);
+  }, 150);
+}
+
+function closeModel() {
+  const modal = document.getElementById('modelModal');
+  const container = document.getElementById('modelContainer');
+  modal.classList.add('hidden');
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+  const mv = container.querySelector('model-viewer');
+  if (mv) mv.remove();
+}
+
+function openPdf(filePath) {
+  const modal = document.getElementById('pdfModal');
+  const frame = document.getElementById('pdfFrame');
+  const dl = document.getElementById('pdfDownload');
+  modal.classList.remove('hidden');
+  modal.style.display = 'flex';
+  frame.src = filePath;
+  dl.href = filePath;
+  document.body.style.overflow = 'hidden';
+}
+
+function closePdf() {
+  const modal = document.getElementById('pdfModal');
+  const frame = document.getElementById('pdfFrame');
+  modal.classList.add('hidden');
+  modal.style.display = 'none';
+  frame.src = '';
+  document.body.style.overflow = '';
+}
+
+// ==================== NAVBAR ====================
+const navbar = document.getElementById('navbar');
+let menuOpen = false;
+
+document.getElementById('menuToggle').addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  const menu = document.getElementById('mobileMenu');
+  document.getElementById('menuIcon').classList.toggle('hidden', menuOpen);
+  document.getElementById('closeIcon').classList.toggle('hidden', !menuOpen);
+  menu.style.maxHeight = menuOpen ? '400px' : '0';
+  menu.style.opacity = menuOpen ? '1' : '0';
+});
+
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    menuOpen = false;
+    document.getElementById('mobileMenu').style.maxHeight = '0';
+    document.getElementById('mobileMenu').style.opacity = '0';
+    document.getElementById('menuIcon').classList.remove('hidden');
+    document.getElementById('closeIcon').classList.add('hidden');
+  });
+});
+
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY > 50;
+  navbar.style.backgroundColor = scrolled ? 'rgba(5,5,5,0.85)' : 'rgba(5,5,5,0)';
+  navbar.style.backdropFilter = scrolled ? 'blur(20px)' : 'none';
+  navbar.style.borderBottom = scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent';
+
+  // Back to top
+  const btn = document.getElementById('backToTop');
+  if (window.scrollY > 400) {
+    btn.style.opacity = '1';
+    btn.style.transform = 'scale(1)';
+    btn.style.pointerEvents = 'auto';
+  } else {
+    btn.style.opacity = '0';
+    btn.style.transform = 'scale(0.75)';
+    btn.style.pointerEvents = 'none';
+  }
+});
+
+// ==================== SCROLL ANIMATIONS ====================
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '-50px' });
+
+// ==================== KEYBOARD ====================
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeModel();
+    closePdf();
+  }
+});
+
+// ==================== INIT ====================
+renderTools();
+renderProjects();
+renderCerts();
+renderContactCards();
+typeEffect();
+
+// Observe all fade-up elements after render
+setTimeout(() => {
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+}, 100);
+</script>
 </body>
 </html>
